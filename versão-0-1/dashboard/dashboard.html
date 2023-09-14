@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Botões Laterais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #5F9EA0;
+        }
+		
+		.class-logo {
+			background-color: white;
+			border-radius: 8px;
+			padding: 10px;				
+			text-align: center;
+			width: 100px;
+			max-width: 400px;
+		}
+
+        .sidebar {
+            width: 200px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding-top: 20px;
+        }
+		
+		.logo-container {
+			padding-bottom: 20px;
+			display: flex;
+			flex-direction: column; /* Coloca os elementos em coluna */
+			align-items: center; /* Centraliza os elementos verticalmente */
+		}
+
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background-color: #5F9EA0;
+        }
+		
+		.sidebar a.active {
+			background-color: #5F9EA0;
+			color: white;
+		}
+		
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+		
+		.painel{
+			background-color: white;
+			border-radius: 8px;
+			padding: 5px;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+			text-align: center;
+			width: 100%;
+			max-width: 100%;
+		}
+		
+		.button {
+			background-color: #00FA9A;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			padding: 10px 20px;
+			cursor: pointer;
+			width: 99%;
+		}
+		
+		.button-secondary {
+			background-color: #5F9EA0;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			padding: 10px 20px;
+			cursor: pointer;
+			width: 18%;
+			text-align: left;
+			vertical-align: top; /* Alinha todos os botões pelo topo */
+		}
+			
+		/* Estilo para os botões quando estão ativos (clicados) */
+        .button-secondary:active, .button-secondary.active {
+            height: 50px;
+			padding: 10px 20px;
+			text-align: initial;
+        }
+		
+		#comercial {
+			height: 90vh;
+			width: 80vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 300px; /* Defina a altura desejada */
+		}
+		
+		#estoque {
+			height: 90vh;
+			width: 80vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		#administrativo {
+			height: 90vh;
+			width: 80vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		#financeiro {
+			height: 90vh;
+			width: 80vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		#producao {
+			height: 90vh;
+			width: 80vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.painel-colorido {
+			width: 100%;
+			height: 100px; /* Altura do painel colorido */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#painel-venda {
+			position: absolute;
+			background-color: #5F9EA0; /* Cor para o botão VENDA */
+			border-radius: 8px;
+			width: 100%;
+			max-width: 80%;
+			height: 100%;
+			max-height: 80%;
+		}
+
+		#painel-pedidos {
+			position: absolute;
+			background-color: #5F9EA0; /* Cor para o botão VENDA */
+			border-radius: 8px;
+			width: 100%;
+			max-width: 80%;
+			height: 100%;
+			max-height: 80%;
+		}
+
+		#painel-produtos {
+			position: absolute;
+			background-color: #5F9EA0; /* Cor para o botão VENDA */
+			border-radius: 8px;
+			width: 100%;
+			max-width: 80%;
+			height: 100%;
+			max-height: 80%;
+		}
+
+
+		.input-field {			
+			padding: 10px;
+			margin: 10px 0;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+		
+		.button {
+			background-color: white;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			padding: 10px 20px;
+			cursor: pointer;
+			width: 200px;
+		}
+		
+    </style>
+</head>
+<body>
+	
+    <div class="sidebar">
+		<div class="logo-container">
+			<img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
+		</div>
+        <a href="#comercial">COMERCIAL</a>
+        <a href="#estoque">ESTOQUE</a>
+        <a href="#administrativo">ADMINISTRATIVO</a>
+        <a href="#financeiro">FINANCEIRO</a>
+        <a href="#producao">PRODUÇÃO</a>
+		
+    </div>
+	
+    <div class="content">
+        <div id="comercial">
+			<div class="painel" style="height: 100%; width: 100%; text-align: left">				
+				<button class="button-secondary" onclick="mostrarPainel('venda')">VENDA</button>
+				<button class="button-secondary" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
+				<button class="button-secondary" onclick="mostrarPainel('produtos')">PRODUTOS</button>				
+				<div id="painel-venda" class="painel-colorido" style="display: none;">.
+					<input type="text" id="login" class="input-field" style="width: 50%" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>				
+				</div>
+				<div id="painel-pedidos" class="painel-colorido" style="display: none;">
+					<input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>
+				</div>
+				<div id="painel-produtos" class="painel-colorido" style="display: none;">
+					<input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>
+				</div>				
+			</div>
+		</div>
+        <div id="estoque" style="display: none;">
+            <div class="painel" style="height: 100%; width: 100%; text-align: left">
+						
+				<button class="button-secondary">CADASTROS</button>
+				<button class="button-secondary">PEDIDOS</button>
+				<div id="painel-interno"> 
+					<h1>bla bla bla</h1>
+				</div>
+			</div>
+        </div>
+        <div id="administrativo" style="display: none;">
+            <div class="painel" style="height: 100%; width: 100%; text-align: left">
+						
+				<button class="button-secondary">CADASTROS</button>
+				<button class="button-secondary">TABELAS</button>
+			
+			</div>
+        </div>
+        <div id="financeiro" style="display: none;">
+             <div class="painel" style="height: 100%; width: 100%; text-align: left">
+						
+				<button class="button-secondary">PAGAMENTOS</button>
+				<button class="button-secondary">RECEBIMENTOS</button>
+				<button class="button-secondary">RELATÓRIOS</button>
+			
+			</div>
+        </div>
+        <div id="producao" style="display: none;">
+            <div class="painel" style="height: 100%; width: 100%; text-align: left">
+						
+				<button class="button-secondary">EXECUTANDO</button>
+				<button class="button-secondary">AGUARDANDO</button>
+				<button class="button-secondary">PEDIDOS</button>
+			
+			</div>
+        </div>
+    </div>
+
+    <script>
+
+		function mostrarPainel(painel) {
+			// Oculta todos os painéis coloridos
+			document.getElementById("painel-venda").style.display = "none";
+			document.getElementById("painel-pedidos").style.display = "none";
+			document.getElementById("painel-produtos").style.display = "none";
+
+			// Exibe o painel colorido correspondente ao botão clicado
+			document.getElementById("painel-" + painel).style.display = "block";
+		}
+	
+        // Função para mostrar o conteúdo correspondente ao botão clicado
+        function showContent(contentId) {
+            // Oculta todos os conteúdos
+            const allContents = document.querySelectorAll('.content > div');
+            allContents.forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Mostra o conteúdo correspondente ao botão clicado
+            const selectedContent = document.getElementById(contentId);
+            selectedContent.style.display = 'block';
+			
+			// Remove a classe 'active' de todos os links da barra lateral
+			sidebarLinks.forEach(link => {
+				link.classList.remove('active');
+			});
+			
+			// Adiciona a classe 'active' ao link do botão selecionado
+			const selectedLink = document.querySelector('.sidebar a[href="#' + contentId + '"]');
+			selectedLink.classList.add('active');
+					
+        }
+		
+		// Seleciona todos os botões com a classe "button-secondary"
+        const buttons = document.querySelectorAll('.button-secondary');
+
+        // Adiciona um ouvinte de evento de clique a cada botão
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove a classe "active" de todos os botões
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Adiciona a classe "active" ao botão clicado
+                button.classList.add('active');
+            });
+        });
+
+        // Define a ação para cada link da barra lateral
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const contentId = link.getAttribute('href').substring(1);
+                showContent(contentId);
+            });
+        });
+
+        // Mostra o conteúdo padrão (COMERCIAL) ao carregar a página
+        showContent('comercial');
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Registro - Costuraria VêDois</title>
+        <style>
+            .register-container {
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+            }
+            .register-item {
+                width: 100%;
+                height: 25px; 
+                /* border: none; */
+                padding: 0; 
+                margin-bottom: 10px;
+                box-sizing: border-box; 
+            }
+            .error {
+                color: red;
+            }
+            .logo-image {
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: auto;
+            }
+            #logo-horizontal {
+                max-width: 50%;
+            }
+            #logo-vertical {
+                max-width: 80%;
+                display: none;
+            }
+            @media screen and (orientation: portrait) {
+                #logo-horizontal {
+                    display: none;
+                }
+                #logo-vertical {
+                    max-width: 80%;
+                    display: block;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <img src="../resources/logo-horizontal.png" alt="Descrição da Imagem" class="logo-image" id="logo-horizontal">
+        <img src="../resources/logo-vertical.png" alt="Descrição da Imagem" class="logo-image" id="logo-vertical">
+
+        <div class="register-container">
+            <input type="text" id="fullname" placeholder="Nome Completo" class="register-item">
+            <input type="text" id="cpf" placeholder="CPF" class="register-item" oninput="maskCPF(this)" maxlength="14">
+            <!-- Menu dropdown para cargos -->
+            <select id="cargo" class="register-item">
+                <option value="">Selecione o Cargo</option>
+                <option value="Gerente">Gerente</option>
+                <option value="Financeiro">Financeiro</option>
+                <option value="Operador">Operador</option>
+                <option value="Vendedor">Vendedor</option>
+                <option value="Vendedor">Faxineira</option>
+			</select>
+            <input type="password" id="password" placeholder="Senha" class="register-item">
+            <input type="password" id="repeatPassword" placeholder="Repetir Senha" class="register-item">
+            <button type="button" class="register-item" onclick="register()">Registrar</button>
+            <p id="errorMessage" class="error"></p>
+        </div>
+        <script>
+			function maskCPF(input) {
+				let value = input.value;
+				value = value.replace(/\D/g, ""); // Remove tudo que não for dígito
+				value = value.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o terceiro e o quarto dígitos
+				value = value.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o terceiro e o quarto dígitos
+				value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca um traço entre o terceiro e o quarto dígitos
+				input.value = value; // Atualiza o valor do input
+			}
+			
+			function isValidCPF(cpf) {
+				cpf = cpf.replace(/[^\d]+/g, ''); // Remove tudo que não for dígito
+				if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
+
+				// Calcula e verifica primeiro dígito verificador
+				let sum = 0;
+				for (let i = 0; i < 9; i++) sum += parseInt(cpf[i]) * (10 - i);
+				let check = 11 - (sum % 11);
+				if (check === 10 || check === 11) check = 0;
+				if (check !== parseInt(cpf[9])) return false;
+
+				// Calcula e verifica segundo dígito verificador
+				sum = 0;
+				for (let i = 0; i < 10; i++) sum += parseInt(cpf[i]) * (11 - i);
+				check = 11 - (sum % 11);
+				if (check === 10 || check === 11) check = 0;
+				if (check !== parseInt(cpf[10])) return false;
+
+				return true;
+			}
+
+            function register() {
+                const fullname = document.getElementById('fullname').value;
+                const cpf = document.getElementById('cpf').value;
+                const cargo = document.getElementById('cargo').value;
+                const password = document.getElementById('password').value;
+                const repeatPassword = document.getElementById('repeatPassword').value;
+                const errorMessage = document.getElementById('errorMessage');
+				
+				if (fullname === ''){
+					errorMessage.textContent = 'Nome não pode estar vazio';
+				} else if (cpf === ''){
+					errorMessage.textContent = 'CPF não pode ser vazio';
+				} else if (!isValidCPF(cpf)) {
+					errorMessage.textContent = 'CPF inválido';
+				}else if (cargo === ''){
+					errorMessage.textContent = 'Cargo não pode ser vazio';
+				} else if(password === '' || repeatPassword === '') {
+					errorMessage.textContent = 'As senhas não podem estar vazias';
+				} else if(password !== repeatPassword) {
+					errorMessage.textContent = 'As senhas devem ser iguais';
+				} else {
+                    // Redirecionar para a página inicial
+                    window.location.href = '../index.html'; // Substitua 'index.html' pelo caminho para sua página inicial
+                }
+            }
+        </script>
+    </body>
+</html>
