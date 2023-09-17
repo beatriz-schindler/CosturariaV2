@@ -1,227 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Estoque</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: #5F9EA0;
-        }
-		
-		.class-logo {
-			background-color: white;
-			border-radius: 8px;
-			padding: 10px;				
-			text-align: center;
-			width: 100px;
-			max-width: 400px;
-		}
-
-        .sidebar {
-            width: 200px;
-            background-color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            padding-top: 20px;
-        }
-		
-		.logo-container {
-			padding-bottom: 20px;
-			display: flex;
-			flex-direction: column; /* Coloca os elementos em coluna */
-			align-items: center; /* Centraliza os elementos verticalmente */
-		}
-
-        .sidebar a {
-            display: block;
-            padding: 10px 20px;
-            color: black;
-            text-decoration: none;
-        }
-
-        .sidebar a:hover {
-            background-color: #5F9EA0;
-        }
-		
-		.sidebar a.active {
-			background-color: #5F9EA0;
-			color: white;
-		}
-		
-        .content {
-            margin-left: 220px;
-            padding: 20px;
-        }
-		
-		.painel{
-			background-color: white;
-			border-radius: 8px;
-			padding: 5px;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-			text-align: center;
-			width: 100%;
-			max-width: 100%;
-		}
-		
-		.button {
-			background-color: #00FA9A;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			padding: 10px 20px;
-			cursor: pointer;
-			width: 99%;
-		}
-		
-		.button-secondary {
-			background-color: #5F9EA0;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			padding: 10px 20px;
-			cursor: pointer;
-			width: 18%;
-			text-align: left;
-			vertical-align: top; /* Alinha todos os botões pelo topo */
-		}
-			
-		/* Estilo para os botões quando estão ativos (clicados) */
-        .button-secondary:active, .button-secondary.active {
-            height: 50px;
-			padding: 10px 20px;
-			text-align: initial;
-        }
-		
-		#comercial {
-			height: 90vh;
-			width: 80vw;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			min-height: 300px; /* Defina a altura desejada */
-		}
-		
-		#estoque {
-			height: 90vh;
-			width: 80vw;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		
-		#administrativo {
-			height: 90vh;
-			width: 80vw;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		
-		#financeiro {
-			height: 90vh;
-			width: 80vw;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		
-		#producao {
-			height: 90vh;
-			width: 80vw;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.painel-colorido {
-			width: 100%;
-			height: 100px; /* Altura do painel colorido */
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		#painel-venda {
-			position: absolute;
-			background-color: #5F9EA0; /* Cor para o botão VENDA */
-			border-radius: 8px;
-			width: 100%;
-			max-width: 80%;
-			height: 100%;
-			max-height: 80%;
-		}
-
-		#painel-pedidos {
-			position: absolute;
-			background-color: #5F9EA0; /* Cor para o botão VENDA */
-			border-radius: 8px;
-			width: 100%;
-			max-width: 80%;
-			height: 100%;
-			max-height: 80%;
-		}
-
-		#painel-produtos {
-			position: absolute;
-			background-color: #5F9EA0; /* Cor para o botão VENDA */
-			border-radius: 8px;
-			width: 100%;
-			max-width: 80%;
-			height: 100%;
-			max-height: 80%;
-		}
-
-		#painel-cadastro-estoque{
-			position: absolute;
-			background-color: #5F9EA0; /* Cor para o botão VENDA */
-			border-radius: 8px;
-			width: 100%;
-			max-width: 80%;
-			height: 100%;
-			max-height: 80%;
-		}
-
-		#painel-pedidos-estoque{
-			position: absolute;
-			background-color: #5F9EA0; /* Cor para o botão VENDA */
-			border-radius: 8px;
-			width: 100%;
-			max-width: 80%;
-			height: 100%;
-			max-height: 80%;
-		}
-
-		.input-field {			
-			padding: 10px;
-			margin: 10px 0;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-		}
-		
-		.button {
-			background-color: white;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			padding: 10px 20px;
-			cursor: pointer;
-			width: 200px;
-		}
-
-    </style>
 </head>
-<body>
+<>
     <div class="sidebar">
 		<div class="logo-container">
 			<img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
@@ -234,6 +22,25 @@
 		
     </div>
     <div class="content">
+        <div id="comercial">
+			<div class="painel" style="height: 100%; width: 100%; text-align: left">				
+				<button class="button-secondary" onclick="mostrarPainel('venda')">VENDA</button>
+				<button class="button-secondary" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
+				<button class="button-secondary" onclick="mostrarPainel('produtos')">PRODUTOS</button>				
+				<div id="painel-venda" class="painel-colorido" style="display: none;">.
+					<input type="text" id="login" class="input-field" style="width: 50%" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>				
+				</div>
+				<div id="painel-pedidos" class="painel-colorido" style="display: none;">
+					<input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>
+				</div>
+				<div id="painel-produtos" class="painel-colorido" style="display: none;">
+					<input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>
+				</div>				
+			</div>
+		</div>
         <div id="estoque" style="display: none;">
             <div class="painel" style="height: 100%; width: 100%; text-align: left">
                         
@@ -241,17 +48,57 @@
                 <button class="button-secondary" onclick="mostrarPainel('pedidos-estoque')">PEDIDOS</button>
 
                 <div id="painel-cadastro-estoque" class="painel-colorido" style="display: none;">.
-                    <input type="text" id="login" class="input-field" style="width: 65%; margin-top: 30px" placeholder="Matéria">
-                    <input type="number" id="login" class="input-field" style="width: 30%; margin-top: 10px; margin-left: 10px;" placeholder="Medida">
+                    <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 30px" placeholder="Matéria">
                     
+                    <div class="container">
+                        <div class="radio-tile-group">
+                            <input type="number" id="quant" class="input-field" style="width: 30%; height: 45px; margin-right: 80px;" placeholder="Quantidade">
+                          <div class="input-container">
+                            <input id="Metros" type="radio" name="radio" value="Metros">
+                            <div class="radio-tile">
+                              <label for="Metros">Metros</label>
+                            </div>
+                          </div>
+                  
+                          <div class="input-container">
+                            <input id="Unidades" type="radio" name="radio" value="Unidades">
+                            <div class="radio-tile">
+                              <label for="Unidades">Unidades</label>
+                            </div>
+                          </div>
+                  
+                        </div>    
+                    </div>
 
-                    <input type="radio" name="medida" class="input-field" value="metros" style="width: 10%;"> Metros
-                    <input type="radio" name="medida" class="input-field" value="unidades" style="width: 10%;"> Unidades
-
-                    <input type="color" name="cor" class="input-color" value="Cor" style="width: 67%; margin-left: 10px;">
+                    <div class="container2">
+                        <label id="cor">COR</label>
+                        <input type="color" id="cor" name="cor" class="input-color" value="#ffffff" style="width: 50%; margin-left: 10px;">
+                    </div>
+                    
                     <!-- <button class="button" style="color: black">Buttom 1</button> -->
 
-
+                    <!-- Tabela de rolagem -->
+                    <div class="scrollable-table">
+                        <table id="tabela-estoque" class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Cor</th>
+                                    <th>Quantidade</th>
+                                    <th>Medida</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="button">
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Pesquisar</button>
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Editar</button>
+                        <button class="button" style="color: #5F9EA0" onclick="adicionarProduto()">Cadastrar</button>
+                    </div>
+                        
                 </div>
                 <div id="painel-pedidos-estoque" class="painel-colorido" style="display: none;">
                     <input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
@@ -261,6 +108,7 @@
         </div>
     </div>
 
+   
     <script>
 
 		function mostrarPainel(painel) {
@@ -324,6 +172,76 @@
 
         // Mostra o conteúdo padrão (COMERCIAL) ao carregar a página
         showContent('comercial');
+
+        const produtosPreCadastrados = [
+            { item: "Jeans", cor: "Preto", quantidade: 1000, medida: "Metros" },
+            { item: "Zíper", cor: "Prata", quantidade: 1000, medida: "Unidades" },
+            { item: "Malha", cor: "Rosa", quantidade: 1000, medida: "Metros" },
+            // Adicione outros produtos aqui
+        ];
+        function preencherTabelaProdutosPreCadastrados() {
+            const tabela = document.getElementById("tabela-estoque");
+            const tbody = tabela.querySelector("tbody");
+
+            produtosPreCadastrados.forEach(produto => {
+                const novaLinha = document.createElement("tr");
+                novaLinha.innerHTML = `
+                    <td>${produto.item}</td>
+                    <td>${produto.cor}</td>
+                    <td>${produto.quantidade}</td>
+                    <td>${produto.medida}</td>
+                `;
+
+                novaLinha.addEventListener("dblclick", function() {
+                alert(`Você Clicou duas Vezes em ${produto.item}`);
+            });
+
+                tbody.appendChild(novaLinha);
+            });
+        }
+
+        // Chame a função para preencher a tabela quando a página carregar
+        window.addEventListener("load", preencherTabelaProdutosPreCadastrados);
+
+        function adicionarProduto() {
+            // Obtenha os valores do formulário
+            const item = document.getElementById("item").value;
+            const cor = document.getElementById("cor").value;
+            const quantidade = document.getElementById("quant").value;
+            const medida = document.querySelector('input[name="radio"]:checked').value;
+
+            // Crie uma nova linha na tabela
+            const tabela = document.getElementById("tabela-estoque");
+            const tbody = tabela.querySelector("tbody");
+
+            const novaLinha = document.createElement("tr");
+            novaLinha.innerHTML = `
+                <td>${item}</td>
+                <td>${cor}</td>
+                <td>${quantidade}</td>
+                <td>${medida}</td>
+            `;
+
+            novaLinha.addEventListener("dblclick", function() {
+                alert(`Você Clicou duas Vezes em ${item}`);
+            });
+
+            // Adicione a nova linha à tabela
+            tbody.appendChild(novaLinha);
+
+            // Limpe os campos do formulário
+            document.getElementById("item").value = "";
+            document.getElementById("cor").value = "#ffffff";
+            document.getElementById("quant").value = "";
+            const radios = document.querySelectorAll('input[name="radio"]');
+            radios.forEach(radio => {
+                radio.checked = false;
+            });
+        }
+
+        function emConstrucao(){
+            window.alert("Função em Construção! - Volte mais tarde")
+        }
     </script>
 </body>
 </html>
