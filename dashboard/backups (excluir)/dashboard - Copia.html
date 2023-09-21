@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Botões Laterais</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo CSS --></head>
+<body>
+	
+    <div class="sidebar">
+		<div class="logo-container">
+			<img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
+		</div>
+        <a href="comercial.html">COMERCIAL</a>
+        <a href="estoque.html">ESTOQUE</a>
+        <a href="#administrativo">ADMINISTRATIVO</a>
+        <a href="financeiro.html">FINANCEIRO</a>
+        <a href="#producao">PRODUÇÃO</a>
+		
+    </div>
+	
+    <div class="content">
+		<!-- <iframe src="comercial.html" frameborder="0" scrolling="no" style="width: 100%; height: 100%;"></iframe> -->
+		
+        <!-- <div id="comercial">
+			
+				
+			<div class="painel" style="height: 100%; width: 100%; text-align: left">				
+				<button class="button-secondary" onclick="mostrarPainel('venda')">VENDA</button>
+				<button class="button-secondary" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
+				<button class="button-secondary" onclick="mostrarPainel('produtos')">PRODUTOS</button>				
+				<<div id="painel-venda" class="painel-colorido" style="display: none;">
+					<input type="text" id="login" class="input-field" style="width: 50%" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>				
+				</div>
+				<div id="painel-pedidos" class="painel-colorido" style="display: none;">
+					<input type="text" id="login" class="input-field" style="width: 50%" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>
+				</div>
+				<div id="painel-produtos" class="painel-colorido" style="display: none;">
+					<input type="text" id="login" class="input-field" style="width: 50%" placeholder="IMPUT 1">
+					<button class="button" style="color: black">Buttom 1</button>
+				</div>				
+			</div>
+		</div>
+ -->
+        <div id="estoque" style="display: none;">
+            <div class="painel" style="height: 100%; width: 100%; text-align: left">
+                        
+                <button class="button-secondary" onclick="mostrarPainel('cadastro-estoque')">CADASTROS</button>
+                <button class="button-secondary" onclick="mostrarPainel('pedidos-estoque')">PEDIDOS</button>
+
+                <div id="painel-cadastro-estoque" class="painel-colorido" style="display: none;">
+                    <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 30px" placeholder="Matéria">
+                    
+                    <div class="container">
+                        <div class="radio-tile-group">
+                            <input type="number" id="quant" class="input-field" style="width: 30%; height: 45px; margin-right: 80px;" placeholder="Quantidade">
+                          <div class="input-container">
+                            <input id="Metros" type="radio" name="radio" value="Metros">
+                            <div class="radio-tile">
+                              <label for="Metros">Metros</label>
+                            </div>
+                          </div>
+                  
+                          <div class="input-container">
+                            <input id="Unidades" type="radio" name="radio" value="Unidades">
+                            <div class="radio-tile">
+                              <label for="Unidades">Unidades</label>
+                            </div>
+                          </div>
+                  
+                        </div>    
+                    </div>
+
+                    <div class="container2">
+                        <label id="cor">COR</label>
+                        <input type="color" id="cor" name="cor" class="input-color" value="#ffffff" style="width: 50%; margin-left: 10px;">
+                    </div>
+                    
+                    <!-- <button class="button" style="color: black">Buttom 1</button> -->
+
+                    <!-- Tabela de rolagem -->
+                    <div class="scrollable-table">
+                        <table id="tabela-estoque" class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Cor</th>
+                                    <th>Quantidade</th>
+                                    <th>Medida</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="button">
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Pesquisar</button>
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Editar</button>
+                        <button class="button" style="color: #5F9EA0" onclick="adicionarProduto()">Cadastrar</button>
+                    </div>
+                        
+                </div>
+                <div id="painel-pedidos-estoque" class="painel-colorido" style="display: none;">
+
+                    <div id="container-pedidos" style="display: block;">
+                        <input type="text" id="fornecedor" class="input-field" style="width: 50%; margin-left: 10px; margin-top: 30px" placeholder="Fornecedor">
+                        <input type="number" id="pedido" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Pedido">
+                        <button class="button" style="color: black" onclick="emConstrucao()">Pesquisar</button>
+                        <input type="text" id="material" class="input-field" style="width: 40%; margin-left: 10px" placeholder="Material">
+                        <input type="color" id="cor" class="input-field" style="width: 9%; margin-left: 10px" placeholder="Cor">
+                        <input type="number" id="quantidade" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Quantidade">
+                        <button class="button" style="color: black" onclick="adicionarProdutoPedido()">Adicionar</button><div class="container2">    
+                    
+                    </div>
+                    
+                     <!-- Tabela de rolagem -->
+                    <div class="scrollable-table">
+                        <table id="tabela-pedidos" class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Fornecedor</th>
+                                    <th>Material</th>
+                                    <th>Cor</th>
+                                    <th>Quantidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="button">
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Excluir</button>
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Visualizar</button>
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="administrativo" style="display: none;">
+            <div class="painel" style="height: 100%; width: 100%; text-align: left">
+						
+				<button class="button-secondary">CADASTROS</button>
+				<button class="button-secondary">TABELAS</button>
+			
+			</div>
+        </div>
+       
+	   <div id="financeiro" style="display: none;">
+			<div class="painel" style="height: 100%; width: 100%; text-align: left">
+				<button class="button-secondary" onclick="mostrarPainel('pagamentos')">PAGAMENTOS</button>
+				<button class="button-secondary" onclick="mostrarPainel('recebimentos')">RECEBIMENTOS</button>
+				<button class="button-secondary" onclick="mostrarPainel('relatorios')">RELATÓRIOS</button>
+				
+				<!-- Painel de Pagamentos -->
+				<div id="painel-pagamentos" class="painel-colorido" style="display: none;">
+					
+					<!-- Rótulo para campo de data inicial -->
+					<label for="data" style="margin-left: 10px; display: inline-block;">Data entre</label>
+					<!-- Campo de entrada de data inicial com identificador "data" -->
+					<input type="date" id="data" name="data" style="margin-left: 10px; display: inline-block;" onchange="filtrarPagamentos()">
+					<!-- Rótulo para campo de data final -->
+					<label for="data" style="margin-left: 10px; display: inline-block;">à: </label>
+					<!-- Campo de entrada de data final com identificador "data" -->
+					<input type="date" id="data" name="data" style="margin-left: 10px; display: inline-block;" onchange="filtrarPagamentos()">
+					<!-- Contêiner para seleção de status -->
+					<div class="dropdown-container" style="display: inline-block;">
+						<!-- Rótulo para a seleção de status -->
+						<label for="filtro" style="display: inline-block;">Status:</label>
+						<!-- Seleção de status -->
+						<select id="filtro" name="filtro" style="width: 150px; display: inline-block;">
+							<option value="abertos">Abertos</option>
+							<option value="fechados">Fechados</option>
+							<option value="ambos">Ambos</option>
+						</select>
+					</div>
+
+					<!-- Rótulo para faixa de valores -->
+					<label for="filtro" style="margin-left: 10px; display: inline-block;">Valor entre</label>
+					<!-- Campo de entrada para valor mínimo -->
+					<input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor">
+					<!-- Rótulo para faixa de valores -->
+					<label for="filtro" style="margin-left: 10px; display: inline-block;">à</label>
+					<!-- Campo de entrada para valor máximo -->
+					<input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor">
+					<!-- Rótulo para seleção de fornecedores -->
+					<label for="filtro" style="margin-left: 10px; display: inline-block;">Fornecedores</label>
+					
+					<!-- Contêiner para seleção de fornecedores -->
+					<div class="dropdown-container" style="display: inline-block;">
+						<!-- Seleção de fornecedores -->
+						<select id="filtro" name="filtro" style="display: inline-block; width: 780px;">
+							<option value="forn1">Todos</option>
+							<option value="forn2">Fulano</option>
+							<option value="forn3">Ciclano</option>
+						</select>
+					</div>
+
+					<!-- Botão de pesquisa -->
+					<button class="button" style="color: black; width: 150px; display: inline-block;">Pesquisar</button>
+
+					<!-- Tabela de rolagem -->
+					<div class="scrollable-table">
+						<table id="tabela-pagamentos" class="styled-table">
+							<thead>
+								<tr>
+									<th>Posição</th>
+									<th>Fornecedor</th>
+									<th>Valor</th>
+									<th>Vencimento</th>
+									<th>Forma de Pgto</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Contêiner para botões -->
+					<div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; display: flex; justify-content: space-between;">
+						<!-- Botão de registro -->
+						<button class="button" style="color: black; width: 150px;">Registrar</button>
+						<!-- Botão de alteração -->
+						<button class="button" style="color: black; width: 150px;">Alterar</button>
+						<!-- Botão para gerar fatura -->
+						<button class="button" style="color: black; width: 150px;">Gerar Fatura</button>
+					</div>
+				</div>
+
+				<div id="painel-recebimentos" class="painel-colorido" style="display: none;">
+					<h1 style="margin-left: 10px">Conteúdo do Painel de Recebimentos</h1>
+					<input type="text" id="input-recebimentos" class="input-field" style="width: 50%" placeholder="Input Recebimentos">
+					<button class="button" style="color: black">Botão Recebimentos</button>
+				</div>
+				<div id="painel-relatorios" class="painel-colorido" style="display: none;">
+					<h1 style="margin-left: 10px">Conteúdo do Painel de Relatórios</h1>
+					<input type="text" id="input-relatorios" class="input-field" style="width: 50%" placeholder="Input Relatórios">
+					<button class="button" style="color: black">Botão Relatórios</button>
+				</div>
+			</div>
+		</div>
+        
+		<div id="producao" style="display: none;">
+            <div class="painel" style="height: 100%; width: 100%; text-align: left">
+						
+				<button class="button-secondary">EXECUTANDO</button>
+				<button class="button-secondary">AGUARDANDO</button>
+				<button class="button-secondary">PEDIDOS</button>
+
+			
+			</div>
+        </div>
+    </div>
+
+     <!-- <script src="scripts.js"></script> <!-- Link para o arquivo JavaScript -->
+</body>
+</html>

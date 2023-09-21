@@ -1,0 +1,158 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #5F9EA0;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-height: 90%;
+    width: 100%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-button {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 49%;
+    margin-top: auto;
+    display: inline-block;
+    margin-right: 5px; /* Adicione margem direita entre os botões */
+}
+
+.button-container {
+    text-align: center; /* Alinhe os botões no centro */
+    margin-top: 20px; /* Adicione margem acima dos botões (opcional) */
+}
+
+.input-error {
+    border: 2px solid red; /* Estilo de destaque para campos vazios */
+}
+
+#financeiro {
+	height: 90vh;
+	width: 80vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#painel-pagamentos {
+	position: absolute;
+	background-color: #5F9EA0; /* Cor para o botão VENDA */
+	border-radius: 8px;
+	width: 100%;
+	max-width: 80%;
+	height: 100%;
+	max-height: 82%;
+}
+
+#painel-recebimentos {
+	position: absolute;
+	background-color: #5F9EA0; /* Cor para o botão VENDA */
+	border-radius: 8px;
+	width: 100%;
+	max-width: 80%;
+	height: 100%;
+	max-height: 80%;
+}
+
+#painel-relatorios {
+	position: absolute;
+	background-color: #5F9EA0; /* Cor para o botão VENDA */
+	border-radius: 8px;
+	width: 100%;
+	max-width: 80%;
+	height: 100%;
+	max-height: 80%;
+}
+
+ /* Estilos para o rótulo (label) */
+label {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+/* Estilos para o campo de entrada de data */
+input[type="date"] {
+	margin-top: 10px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+/* Estilos para o container */
+.dropdown-container {
+	margin: 10px;
+}
+
+/* Estilos para o menu dropdown */
+select {
+	padding: 9px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+/* Estilo da div de rolagem */
+.scrollable-table {
+	max-height: 360px; /* Altura máxima */
+	overflow-y: auto; /* Ativar rolagem vertical */
+}
+
+table {
+	border-collapse: collapse;
+	width: 98%;
+}
+
+table, th, td {
+	border: 1px solid #ccc;
+}
+
+th, td {
+	padding: 10px;
+	text-align: center;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.styled-table {
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-left: 10px;
+}
+
+/* Estilo para a barra de rolagem vertical */
+.scrollable-table::-webkit-scrollbar {
+	width: 12px; /* Largura da barra de rolagem */
+	left: 50px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+	background-color: #5F9EA0; /* Cor do indicador da barra de rolagem */
+	border-radius: 6px; /* Raio das bordas do indicador */
+}
+
+.scrollable-table::-webkit-scrollbar-track {
+	background-color: #ccc; /* Cor de fundo da barra de rolagem */
+}
+
+
+
+

@@ -1,0 +1,76 @@
+ /* Estilos para o rótulo (label) */
+        label {
+			margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        /* Estilos para o campo de entrada de data */
+        input[type="date"] {
+			margin-top: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+		
+		/* Estilos para o container */
+        .dropdown-container {
+            margin: 10px;
+        }
+
+        /* Estilos para o menu dropdown */
+        select {
+            padding: 9px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+		
+		/* Estilo da div de rolagem */
+        .scrollable-table {
+            max-height: 360px; /* Altura máxima */
+            overflow-y: auto; /* Ativar rolagem vertical */
+        }
+		
+		table {
+            border-collapse: collapse;
+            width: 98%;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .styled-table {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+		
+		/* Estilo para a barra de rolagem vertical */
+		.scrollable-table::-webkit-scrollbar {
+			width: 12px; /* Largura da barra de rolagem */
+			left: 50px;
+		}
+
+		.scrollable-table::-webkit-scrollbar-thumb {
+			background-color: #5F9EA0; /* Cor do indicador da barra de rolagem */
+			border-radius: 6px; /* Raio das bordas do indicador */
+		}
+
+		.scrollable-table::-webkit-scrollbar-track {
+			background-color: #ccc; /* Cor de fundo da barra de rolagem */
+		}

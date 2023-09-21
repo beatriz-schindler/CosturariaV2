@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Financeiro V2</title>
+        <link rel="stylesheet" href="styles.css"><!-- Link para o arquivo CSS -->
+        <link rel="stylesheet" href="css/financeiro.css"><!-- Link para o arquivo CSS -->
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
+            </div>
+            <a href="comercial.html">COMERCIAL</a>
+            <a href="estoque.html">ESTOQUE</a>
+            <a href="administrativo.html">ADMINISTRATIVO</a>
+            <a href="financeiro.html">FINANCEIRO</a>
+            <a href="producao.html">PRODUÇÃO</a>
+        </div>
+        <div class="content">
+            <div id="financeiro">
+                <div class="painel" style="height: 100%; width: 100%; text-align: left">
+                   <button class="button-secondary button-payment active" id="btn-pagamentos">PAGAMENTOS</button>
+					<button class="button-secondary button-receipts" id="btn-recebimentos">RECEBIMENTOS</button>
+
+                    <!-- Painel de Pagamentos -->
+                    <div id="painel-pagamentos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <!-- Rótulo para campo de data inicial -->
+                        <label for="data" style="margin-left: 10px; display: inline-block;">Data entre</label>
+                        <!-- Campo de entrada de data inicial com identificador "data" -->
+                        <input type="date" id="data" name="data" style="margin-left: 10px; display: inline-block;" onchange="filtrarPagamentos()">
+                        <!-- Rótulo para campo de data final -->
+                        <label for="data" style="margin-left: 10px; display: inline-block;">à: </label>
+                        <!-- Campo de entrada de data final com identificador "data" -->
+                        <input type="date" id="data" name="data" style="margin-left: 10px; display: inline-block;" onchange="filtrarPagamentos()">
+                        <!-- Contêiner para seleção de status -->
+                        <div class="dropdown-container" style="display: inline-block;">
+                            <!-- Rótulo para a seleção de status -->
+                            <label for="filtro" style="display: inline-block;">Status:</label>
+                            <!-- Seleção de status -->
+                            <select id="filtro" name="filtro" style="width: 150px; display: inline-block;">
+                                <option value="abertos">Abertos</option>
+                                <option value="fechados">Fechados</option>
+                                <option value="ambos">Ambos</option>
+                            </select>
+                        </div>
+                        <!-- Rótulo para faixa de valores -->
+                        <label for="filtro" style="margin-left: 10px; display: inline-block;">Valor entre</label>
+                        <!-- Campo de entrada para valor mínimo -->
+                        <input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <!-- Rótulo para faixa de valores -->
+                        <label for="filtro" style="margin-left: 10px; display: inline-block;">à</label>
+                        <!-- Campo de entrada para valor máximo -->
+                        <input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <!-- Rótulo para seleção de fornecedores -->
+                        <label for="filtro" style="margin-left: 5px; display: inline-block;">Fornecedores</label>
+                        <!-- Contêiner para seleção de fornecedores -->
+                        <div class="dropdown-container" style="display: inline-block;">
+                            <!-- Seleção de fornecedores -->
+                            <select id="filtro" name="filtro" style="display: inline-block; width: 770px;">
+                                <option value="forn1">Todos</option>
+                                <option value="forn2">Fulano</option>
+                                <option value="forn3">Ciclano</option>
+                            </select>
+                        </div>
+                        <!-- Botão de pesquisa -->
+                        <button class="button" style="color: black; width: 150px; display: inline-block;">Pesquisar</button>
+                        <!-- Tabela de rolagem -->
+                        <div class="scrollable-table">
+                            <table id="tabela-pagamentos" class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Posição</th>
+                                        <th>Fornecedor</th>
+                                        <th>Valor</th>
+                                        <th>Vencimento</th>
+                                        <th>Forma de Pgto</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Contêiner para botões -->
+                        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; display: flex; justify-content: space-between;">
+                            <!-- Botão de registro -->
+                            <button class="button" style="color: black; width: 150px;" id="btnRegistrarPag">Registrar</button>
+                            <!-- Botão de alteração -->
+                            <button class="button" style="color: black; width: 150px;">Alterar</button>
+                            <!-- Botão para gerar fatura -->
+                            <button class="button" style="color: black; width: 150px;">Gerar Fatura</button>
+							<!-- Botão para gerar PDF da lista -->
+                            <button class="button" style="color: black; width: 150px;">Exportar Relatório</button>
+                        </div>
+                    </div>
+					
+                    <!-- Painel de Recebimentos -->
+					<div id="painel-recebimentos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <!-- Rótulo para campo de data inicial -->
+                        <label for="data" style="margin-left: 10px; display: inline-block;">Data entre</label>
+                        <!-- Campo de entrada de data inicial com identificador "data" -->
+                        <input type="date" id="data" name="data" style="margin-left: 10px; display: inline-block;" onchange="filtrarRacebimentos()">
+                        <!-- Rótulo para campo de data final -->
+                        <label for="data" style="margin-left: 10px; display: inline-block;">à: </label>
+                        <!-- Campo de entrada de data final com identificador "data" -->
+                        <input type="date" id="data" name="data" style="margin-left: 10px; display: inline-block;" onchange="filtrarRacebimentos()">
+                        <!-- Contêiner para seleção de status -->
+                        <div class="dropdown-container" style="display: inline-block;">
+                            <!-- Rótulo para a seleção de status -->
+                            <label for="filtro" style="display: inline-block;">Status:</label>
+                            <!-- Seleção de status -->
+                            <select id="filtro" name="filtro" style="width: 150px; display: inline-block;">
+                                <option value="abertos">Abertos</option>
+                                <option value="fechados">Fechados</option>
+                                <option value="ambos">Ambos</option>
+                            </select>
+                        </div>
+                        <!-- Rótulo para faixa de valores -->
+                        <label for="filtro" style="margin-left: 10px; display: inline-block;">Valor entre</label>
+                        <!-- Campo de entrada para valor mínimo -->
+                        <input type="text" id="input-Racebimentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <!-- Rótulo para faixa de valores -->
+                        <label for="filtro" style="margin-left: 10px; display: inline-block;">à</label>
+                        <!-- Campo de entrada para valor máximo -->
+                        <input type="text" id="input-Racebimentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <!-- Rótulo para seleção de fornecedores -->
+                        <label for="filtro" style="margin-left: 5px; display: inline-block;">Clientes</label>
+                        <!-- Contêiner para seleção de fornecedores -->
+                        <div class="dropdown-container" style="display: inline-block;">
+                            <!-- Seleção de fornecedores -->
+                            <select id="filtro" name="filtro" style="display: inline-block; width: 770px;">
+                                <option value="forn1">Todos</option>
+                                <option value="forn2">Fulano</option>
+                                <option value="forn3">Ciclano</option>
+                            </select>
+                        </div>
+                        <!-- Botão de pesquisa -->
+                        <button class="button" style="color: black; width: 150px; display: inline-block;">Pesquisar</button>
+                        <!-- Tabela de rolagem -->
+                        <div class="scrollable-table">
+                            <table id="tabela-Racebimentos" class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Posição</th>
+                                        <th>Cliente</th>
+                                        <th>Valor</th>
+                                        <th>Vencimento</th>
+                                        <th>Forma de Pgto</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- As linhas da tabela serão preenchidas com dados de imput -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Contêiner para botões -->
+                        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; display: flex; justify-content: space-between;">
+                            <!-- Botão de registro -->
+							<button class="button" style="color: black; width: 150px;" id="btnRegistrarRec">Registrar</button>
+                            <!-- Botão de alteração -->
+                            <button class="button" style="color: black; width: 150px;">Alterar</button>
+                            <!-- Botão para gerar fatura -->
+                            <button class="button" style="color: black; width: 150px;">Gerar Fatura</button>
+							<!-- Botão para gerar PDF da lista -->
+                            <button class="button" style="color: black; width: 150px;">Exportar Relatório</button>
+                        </div>
+                    </div>
+
+				</div>
+            </div>
+        </div>
+
+        <script src="js/financeiro.js"></script> <!-- Link para o arquivo JavaScript -->
+		
+    </body>
+</html>
