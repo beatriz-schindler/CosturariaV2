@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Comercial V2</title>
+        <!-- Link para o arquivo CSS -->
+        <link rel="stylesheet" href="css/comercial.css">
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
+            </div>
+            <a href="comercial.html" style="background-color: #5F9EA0; color: white;">COMERCIAL</a>
+            <a href="estoque.html">ESTOQUE</a>
+            <a href="administrativo.html">ADMINISTRATIVO</a>
+            <a href="financeiro.html">FINANCEIRO</a>
+            <a href="producao.html">PRODUÇÃO</a>
+        </div>
+        <div class="content">
+            <div id="comercial">
+                <div class="painel" style="height: 100%; width: 100%; text-align: left">
+                    <button class="button-secondary button-venda" onclick="mostrarPainel('venda')">VENDA</button>
+                    <button class="button-secondary button-pedidos" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
+                    <button class="button-secondary button-produtos" onclick="mostrarPainel('produtos')">PRODUTOS</button>
+                    
+					<div id="painel-venda" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <input type="text" id="login" class="input-field" style="width: 80%; margin-top: 15px" placeholder="Cliente">
+						<div class="container">
+                            <input type="text" id="input-cadastro" class="input-field" style=" height: 20px; width: 25%; margin-left: 20px;" placeholder="Item">
+                            <button class="button" style="color: black; height: 55%; margin-top: 1%; margin-left: 20px; text-align: center;">TAMANHO</button>
+                            <div class="input-container">
+                                <input id="Metros" type="checkbox" name="tamanho" value="Pequeno">
+                                <div class="radio-tile">
+                                    <label for="Metros">PEQUENO</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input id="UnidadesMedio" type="checkbox" name="tamanho" value="Médio">
+                                <div class="radio-tile">
+                                    <label for="UnidadesMedio">MÉDIO</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input id="UnidadesGrande" type="checkbox" name="tamanho" value="Grande">
+                                <div class="radio-tile">
+                                    <label for="UnidadesGrande">GRANDE</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container2">
+                            <label id="cor">COR</label>
+                            <input type="color" id="cor" name="cor" class="input-color" value="#ffffff" style="width: 50%; margin-left: 10px;">
+                        </div>
+                        <input type="text" id="input-cadastro" class="input-field" style=" height: 50px; width: 84%; margin-left: 20px;" placeholder="Observação">
+                        <div id="button" style="width: 100%; height: 40%; text-align: center; margin-top: 80px;">
+                            <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Enviar Pedido</button>
+                        </div>
+                    </div>
+                    <div id="painel-pedidos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <div class="scrollable-table" style="width: 100%; height: 360px;">
+                            <table id="tabela-pedidos" class="styled-table" style="width: 98%;">
+                                <thead>
+                                    <tr>
+                                        <th>Pedido</th>
+                                        <th>Cliente</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">123</th>
+                                        <td>Doidão</td>
+                                        <td>Em Andamento</td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="" style="height: 15px; width: 15px;">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">456</th>
+                                        <td>Blumenau</td>
+                                        <td>Cancelado</td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="" style="height: 15px; width: 15px;">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">789</th>
+                                        <td>Nike</td>
+                                        <td>Concluído</td>
+                                        <td>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="" style="height: 15px; width: 15px;">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="button" style="width: 100%; height: 40%; text-align: right; margin-top: 80px;">
+                                <button class="button" style="color: #5F9EA0; margin-right: 20px;" onclick="emConstrucao()">Atualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="painel-produtos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <input type="text" id="login" class="input-field" style="width: 95%" placeholder="Produto">
+                        <div class="container">
+                            <button class="button" style="color: black; height: 55%; margin-top: 1%; margin-left: 19%; text-align: center;">TAMANHO</button>
+                            <div class="input-container">
+                                <input id="Metros" type="checkbox" name="tamanho" value="Pequeno">
+                                <div class="radio-tile">
+                                    <label for="Metros">PEQUENO</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input id="UnidadesMedio" type="checkbox" name="tamanho" value="Médio">
+                                <div class="radio-tile">
+                                    <label for="UnidadesMedio">MÉDIO</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input id="UnidadesGrande" type="checkbox" name="tamanho" value="Grande">
+                                <div class="radio-tile">
+                                    <label for="UnidadesGrande">GRANDE</label>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" id="cor" class="input-field" style="width: 95%" placeholder="COR">
+                        <div class="scrollable-table">
+                            <table id="tabela-pagamentos" class="styled-table" style="margin-left: 10%;">
+                                <thead>
+                                    <tr>
+                                        <th>ITEM</th>
+                                        <th>MEDIDA</th>
+                                        <th>COR</th>
+                                        <th>QUANTIDADE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Calça</th>
+                                        <td>Pequeno</td>
+                                        <td>Azul</td>
+                                        <td>05</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Camiseta</th>
+                                        <td>Grande</td>
+                                        <td>Preta</td>
+                                        <td>12</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Cueca</th>
+                                        <td>Grande</td>
+                                        <td>Transparente</td>
+                                        <td>12</td>
+                                    </tr>
+                                    <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="button" style="color: black">PESQUISAR</button>
+                        <button class="button" style="color: black">CADASTRAR</button>
+                        <button class="button" style="color: black">EDITAR</button>
+                    </div>
+                
+				</div>
+            </div>
+        </div>
+		
+        <script src="js/comercial.js"></script> <!-- Link para o arquivo JavaScript -->
+    </body>
+</html>

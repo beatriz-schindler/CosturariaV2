@@ -1,0 +1,64 @@
+/* Estilo para os botões quando estão ativos (clicados) */
+ .button-secondary:active, .button-secondary.active {
+     height: 50px;
+     padding: 10px 20px;
+     text-align: initial;
+}
+ .button-secondary {
+     background-color: #5F9EA0;
+     color: white;
+     border: none;
+     border-top-left-radius: 4px;
+     border-top-right-radius: 4px;
+     padding: 10px 20px;
+     cursor: pointer;
+     width: 18%;
+     text-align: left;
+     vertical-align: top;
+}
+
+th, td {
+	padding: 10px;
+	text-align: center;
+    background-color: #f2f2f2;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.styled-table {
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-left: 10px;
+}
+
+/* Estilo para a barra de rolagem vertical */
+.scrollable-table::-webkit-scrollbar {
+	width: 12px; /* Largura da barra de rolagem */
+	left: 50px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+	background-color: #5F9EA0; /* Cor do indicador da barra de rolagem */
+	border-radius: 6px; /* Raio das bordas do indicador */
+}
+
+.scrollable-table::-webkit-scrollbar-track {
+	background-color: #ccc; /* Cor de fundo da barra de rolagem */
+}
+
+.content2{
+    width: 10%;
+}
+
+.painel-colorido2{
+    height: 10%;
+    width: 10%;
+}
