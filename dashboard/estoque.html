@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Estoque V2</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
 		<link rel="stylesheet" href="styles.css"><!-- Link para o arquivo CSS -->        
 		<link rel="stylesheet" href="css/estoque.css"><!-- Link para o arquivo CSS -->
     </head>
@@ -14,7 +14,7 @@
                 <img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
             </div>
             <a href="comercial.html">COMERCIAL</a>
-            <a href="estoque.html">ESTOQUE</a>
+            <a href="estoque.html" style="background-color: #5F9EA0; color: white;">ESTOQUE</a>
             <a href="administrativo.html">ADMINISTRATIVO</a>
             <a href="financeiro.html">FINANCEIRO</a>
             <a href="producao.html">PRODUÇÃO</a>
@@ -22,20 +22,24 @@
         <div class="content">
             <div id="estoque">
                 <div class="painel" style="height: 100%; width: 100%; text-align: left">
-                    <button class="button-secondary button-cadastro-estoque active" onclick="mostrarPainel('cadastro-estoque')">CADASTROS</button>
+                    <button class="button-secondary button-cadastro-estoque" onclick="mostrarPainel('cadastro-estoque')">CADASTROS</button>
 					<button class="button-secondary button-pedidos-estoque" onclick="mostrarPainel('pedidos-estoque')">PEDIDOS</button>
 
                     <div id="painel-cadastro-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
-                        <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 30px" placeholder="Matéria">
+                        <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 15px" placeholder="Matéria">
+						
                         <div class="container">
                             <div class="radio-tile-group">
-                                <input type="number" id="quant" class="input-field" style="width: 30%; height: 45px; margin-right: 80px;" placeholder="Quantidade">
-                                <div class="input-container">
+                                <!-- <input type="number" id="quant" class="input-field" style="width: 30%; height: 45px; margin-right: 80px;" placeholder="Quantidade"> -->
+                                <input type="number" id="quant" class="input-field" style="width: 30%; height: 20px;" placeholder="Quantidade">
+                                
+								<div class="input-container">
                                     <input id="Metros" type="radio" name="radio" value="Metros">
                                     <div class="radio-tile">
                                         <label for="Metros">Metros</label>
                                     </div>
                                 </div>
+								
                                 <div class="input-container">
                                     <input id="Unidades" type="radio" name="radio" value="Unidades">
                                     <div class="radio-tile">

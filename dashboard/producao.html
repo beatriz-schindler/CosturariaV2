@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Produção  V2</title>
-		<link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/producao.css">
         <!-- Link para o arquivo CSS -->
     </head>
     <body>
@@ -16,33 +17,64 @@
             <a href="estoque.html">ESTOQUE</a>
             <a href="administrativo.html">ADMINISTRATIVO</a>
             <a href="financeiro.html">FINANCEIRO</a>
-            <a href="producao.html">PRODUÇÃO</a>
+            <a href="producao.html" style="background-color: #5F9EA0; color: white;">PRODUÇÃO</a>
         </div>
-        <div class="content">
-           <div id="producao">
-            <div class="painel" style="height: 100%; width: 100%; text-align: left">
-						
-				<button class="button-secondary button-executando active" onclick="mostrarPainel('executando')">EXECUTANDO</button>
-				<button class="button-secondary button-aguardando" onclick="mostrarPainel('aguardando')">AGUARDANDO</button>
-				<button class="button-secondary button-pedidos" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
-
-				<div id="painel-executando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
-					<h1 style="margin-left: 10px">Conteúdo do Painel de Executando</h1>
-					<input type="text" id="input-executando" class="input-field" style="width: 50%" placeholder="Input Executando">
-					<button class="button" style="color: black">Botão Executando</button>
-				</div>
-				<div id="painel-aguardando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
-					<h1 style="margin-left: 10px">Conteúdo do Painel de Aguardando</h1>
-					<input type="text" id="input-aguardando" class="input-field" style="width: 50%" placeholder="Input Aguardando">
-					<button class="button" style="color: black">Botão Aguardando</button>
-				</div>
-				<div id="painel-pedidos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
-					<h1 style="margin-left: 10px">Conteúdo do Painel de Pedidos</h1>
-					<input type="text" id="input-pedidos" class="input-field" style="width: 50%" placeholder="Input Pedidos">
-					<button class="button" style="color: black">Botão Pedidos</button>
-				</div>
-
-			</div>
+        <div class="content content">
+            <div id="producao">
+                <div class="painel" style="height: 100%; width: 100%; text-align: left">
+                    <button class="button-secondary button-executando active" onclick="mostrarPainel('executando')">EXECUTANDO</button>
+                    <button class="button-secondary button-aguardando" onclick="mostrarPainel('aguardando')">AGUARDANDO</button>
+                    <button class="button-secondary button-pedidos" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
+                    <div id="painel-executando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
+                        <h1 style="margin-left: 10px">Conteúdo do Painel de Executando</h1>
+                        <input type="text" id="input-executando" class="input-field" style="width: 50%" placeholder="Input Executando">
+                        <button class="button" style="color: black">Botão Executando</button>
+                    </div>
+                    <div id="painel-aguardando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
+                        <h1 style="margin-left: 10px">Conteúdo do Painel de Aguardando</h1>
+                        <input type="text" id="input-aguardando" class="input-field" style="width: 50%" placeholder="Input Aguardando">
+                        <button class="button" style="color: black">Botão Aguardando</button>
+                    </div>
+                    <div id="painel-pedidos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <div class="scrollable-table">
+                            <table id="tabela-pagamentos" class="styled-table" style="height: 100%; width: 98%;">
+                                <thead>
+                                    <tr>
+                                        <td style="width: 15%;">N Pedido</td>
+                                        <td style="width: 50%;">Cliente</td>
+                                        <td style="width: 20%;">Status</td>
+                                        <td style="width: 15%;">Acoes</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 15%;">1243278</td>
+                                        <td style="width: 50%;">MARIO ALBERTO</td>
+                                        <td style="width: 20%;">FINALIZADO</td>
+                                        <td style="width: 15%;">******</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 15%;">4652342</td>
+                                        <td style="width: 50%;">ROBSON ALBERTO</td>
+                                        <td style="width: 20%;">EM ANDAMENTO</td>
+                                        <td style="width: 15%;">******</td>
+                                    </tr>
+									<tr>
+                                        <td style="width: 15%;">4652342</td>
+                                        <td style="width: 50%;">ROBSON ALBERTO</td>
+                                        <td style="width: 20%;">EM ANDAMENTO</td>
+                                        <td style="width: 15%;">******</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                                </tbody>
+                            </table>
+                            <div style="text-align: right; margin-right: 12px; text-align: bottom;">
+                                <button class="button" style="color: black; width: 150px; justify-content: end;">Atualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         </div>
         <script src="js/producao.js"></script> <!-- Link para o arquivo JavaScript -->

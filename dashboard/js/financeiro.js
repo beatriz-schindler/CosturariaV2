@@ -239,7 +239,6 @@ function abrirPopupPag() {
     document.body.appendChild(popup);
 }
 
-
 // Função para adicionar linha à tabela de Pagamentos
 function adicionarLinhaTabelaPag(valores) {
     var tabela = document.getElementById("tabela-pagamentos").getElementsByTagName("tbody")[0];
