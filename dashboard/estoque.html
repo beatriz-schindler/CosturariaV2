@@ -48,10 +48,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container2">
+                        <input type="text" id="cor" class="input-field" style="width: 65%; margin-top: 15px" placeholder="Cor">
+                        <!-- <div class="container2">
                             <label id="cor">COR</label>
                             <input type="color" id="cor" name="cor" class="input-color" value="#ffffff" style="width: 50%; margin-left: 10px;">
-                        </div>
+                        </div> -->
                         <!-- Tabela de rolagem -->
                         <div class="scrollable-table">
                             <table id="tabela-estoque" class="styled-table">
@@ -70,18 +71,19 @@
                         </div>
                         <div id="button">
                             <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Pesquisar</button>
-                            <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Editar</button>
+                            <button class="button" style="color: #5F9EA0; margin-left: 10px;" id="BtnEditProd">Editar</button>
                             <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="adicionarProduto()">Cadastrar</button>
+                            <!-- <button class="button" style="color: #5F9EA0; margin-left: 10px;" id="openModalBtn">Abrir Modal</button> -->
                         </div>
                     </div>
-                    <div id="painel-pedidos-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                    <div id="painel-pedidos-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
                         <div id="container-pedidos" style="display: block;">
                             <input type="text" id="fornecedor" class="input-field" style="width: 50%; margin-left: 10px; margin-top: 30px" placeholder="Fornecedor">
                             <input type="number" id="pedido" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Pedido">
                             <button class="button" style="color: black" onclick="emConstrucao()">Pesquisar</button>
-                            <input type="text" id="material" class="input-field" style="width: 40%; margin-left: 10px" placeholder="Material">
-                            <input type="color" id="cor" class="input-field" style="width: 9%; margin-left: 10px" placeholder="Cor">
-                            <input type="number" id="quantidade" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Quantidade">
+                            <input type="text" id="material-pedido" class="input-field" style="width: 39%; margin-left: 10px" placeholder="Material">
+                            <input type="text" id="cor-pedido" class="input-field" style="width: 8%; margin-left: 10px" placeholder="Cor">
+                            <input type="number" id="quantidade-pedido" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Quantidade">
                             <button class="button" style="color: black" onclick="adicionarProdutoPedido()">Adicionar</button>
                             <div class="container2">    
                             </div>
@@ -103,14 +105,33 @@
                             </div>
                             <div id="button">
                                 <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Excluir</button>
-                                <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Visualizar</button>
-                                <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Salvar</button>
+                                <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Visualizar</button>
+                                <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Salvar</button>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharModal()">&times;</span>
+                <input type="text" id="item-modal" class="input-field" style="width: 95%; margin-top: 15px" placeholder="Matéria"> 
+                <input type="number" id="quant-modal" class="input-field" style="width: 85%; height: 20px;" placeholder="Quantidade">
+                <select name="quantidade" id="medida-modal">
+                    <option value="Metros">Metros</option>
+                    <option value="Unidades">Unidades</option>
+                </select>
+                <div id="selectedValue" style="display: none;"></div>
+                <input type="text" id="cor-modal" name="cor" class="input-field" style="width: 95%; margin-left: 10px;  height: 20px" placeholder="Cor">
+                <button class="button-modal" style="color: white" onclick="emConstrucao()">Cadastrar</button>
+                <button class="button-modal" style="color: white" onclick="emConstrucao()">Editar</button>
+            </div>
+        </div>
+        
         <script src="js/estoque.js"></script> <!-- Link para o arquivo JavaScript -->
 		<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
     </body>
