@@ -153,15 +153,15 @@ text-decoration: none;
 	max-height: 80%;
 }
 
-#painel-pedidos {
-	position: absolute;
-	background-color: #5F9EA0; /* Cor para o botão VENDA */
-	border-radius: 8px;
-	width: 100%;
-	max-width: 80%;
-	height: 100%;
-	max-height: 80%;
-}
+		#painel-pedidos {
+			position: absolute;
+			background-color: #5F9EA0; /* Cor para o botão VENDA */
+			border-radius: 8px;
+			width: 100%;
+			max-width: 80%;
+			height: 100%;
+			max-height: 80%;
+		}
 
 #painel-produtos {
 	position: absolute;
