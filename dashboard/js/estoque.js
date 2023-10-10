@@ -128,3 +128,18 @@ function adicionarProdutoPedido() {
 function emConstrucao(){
 	window.alert("Função em Construção! - Volte mais tarde")
 }
+
+function executar-button(){
+	var quantNecessaria = document.getElementById("quant-necessaria");
+    var quantDisponivel = document.getElementById("quant-disponivel");
+
+    // Obter o botão "EXECUTAR"
+    var executarButton = document.getElementById("executar-button");
+
+    // Verificar a condição e aplicar a classe apropriada
+    if (parseInt(quantNecessaria.textContent) <= parseInt(quantDisponivel.textContent)) {
+        executarButton.classList.add("verde"); // Adicione a classe verde
+    } else {
+        executarButton.classList.add("vermelho"); // Adicione a classe vermelha
+    }
+}
