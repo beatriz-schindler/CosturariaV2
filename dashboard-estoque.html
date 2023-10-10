@@ -1,247 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Estoque</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Estoque V2</title>
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+		<link rel="stylesheet" href="styles.css"><!-- Link para o arquivo CSS -->        
+		<link rel="stylesheet" href="css/estoque.css"><!-- Link para o arquivo CSS -->
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
+            </div>
+            <a href="comercial.html">COMERCIAL</a>
+            <a href="estoque.html" style="background-color: #5F9EA0; color: white;">ESTOQUE</a>
+            <a href="administrativo.html">ADMINISTRATIVO</a>
+            <a href="financeiro.html">FINANCEIRO</a>
+            <a href="producao.html">PRODUÇÃO</a>
+        </div>
+        <div class="content">
+            <div id="estoque">
+                <div class="painel" style="height: 100%; width: 100%; text-align: left">
+                    <button class="button-secondary button-cadastro-estoque" onclick="mostrarPainel('cadastro-estoque')">CADASTROS</button>
+					<button class="button-secondary button-pedidos-estoque" onclick="mostrarPainel('pedidos-estoque')">PEDIDOS</button>
 
-</head>
-<>
-    <div class="sidebar">
-		<div class="logo-container">
-			<img src="../resources/icon.png" alt="Descrição da Imagem" class="class-logo">
-		</div>
-        <a href="#comercial">COMERCIAL</a>
-        <a href="#estoque">ESTOQUE</a>
-        <a href="#administrativo">ADMINISTRATIVO</a>
-        <a href="#financeiro">FINANCEIRO</a>
-        <a href="#producao">PRODUÇÃO</a>
-		
-    </div>
-    <div class="content">
-        <div id="comercial">
-			<div class="painel" style="height: 100%; width: 100%; text-align: left">				
-				<button class="button-secondary" onclick="mostrarPainel('venda')">VENDA</button>
-				<button class="button-secondary" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
-				<button class="button-secondary" onclick="mostrarPainel('produtos')">PRODUTOS</button>				
-				<div id="painel-venda" class="painel-colorido" style="display: none;">.
-					<input type="text" id="login" class="input-field" style="width: 50%" placeholder="IMPUT 1">
-					<button class="button" style="color: black">Buttom 1</button>				
-				</div>
-				<div id="painel-pedidos" class="painel-colorido" style="display: none;">
-					<input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
-					<button class="button" style="color: black">Buttom 1</button>
-				</div>
-				<div id="painel-produtos" class="painel-colorido" style="display: none;">
-					<input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
-					<button class="button" style="color: black">Buttom 1</button>
-				</div>				
-			</div>
-		</div>
-        <div id="estoque" style="display: none;">
-            <div class="painel" style="height: 100%; width: 100%; text-align: left">
-                        
-                <button class="button-secondary" onclick="mostrarPainel('cadastro-estoque')">CADASTROS</button>
-                <button class="button-secondary" onclick="mostrarPainel('pedidos-estoque')">PEDIDOS</button>
-
-                <div id="painel-cadastro-estoque" class="painel-colorido" style="display: none;">.
-                    <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 30px" placeholder="Matéria">
-                    
-                    <div class="container">
-                        <div class="radio-tile-group">
-                            <input type="number" id="quant" class="input-field" style="width: 30%; height: 45px; margin-right: 80px;" placeholder="Quantidade">
-                          <div class="input-container">
-                            <input id="Metros" type="radio" name="radio" value="Metros">
-                            <div class="radio-tile">
-                              <label for="Metros">Metros</label>
+                    <div id="painel-cadastro-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
+                        <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 15px" placeholder="Matéria">
+						
+                        <div class="container">
+                            <div class="radio-tile-group">
+                                <!-- <input type="number" id="quant" class="input-field" style="width: 30%; height: 45px; margin-right: 80px;" placeholder="Quantidade"> -->
+                                <input type="number" id="quant" class="input-field" style="width: 30%; height: 20px;" placeholder="Quantidade">
+                                
+								<div class="input-container">
+                                    <input id="Metros" type="radio" name="radio" value="Metros">
+                                    <div class="radio-tile">
+                                        <label for="Metros">Metros</label>
+                                    </div>
+                                </div>
+								
+                                <div class="input-container">
+                                    <input id="Unidades" type="radio" name="radio" value="Unidades">
+                                    <div class="radio-tile">
+                                        <label for="Unidades">Unidades</label>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                  
-                          <div class="input-container">
-                            <input id="Unidades" type="radio" name="radio" value="Unidades">
-                            <div class="radio-tile">
-                              <label for="Unidades">Unidades</label>
+                        </div>
+                        <div class="container2">
+                            <label id="cor">COR</label>
+                            <input type="color" id="cor" name="cor" class="input-color" value="#ffffff" style="width: 50%; margin-left: 10px;">
+                        </div>
+                        <!-- Tabela de rolagem -->
+                        <div class="scrollable-table">
+                            <table id="tabela-estoque" class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Cor</th>
+                                        <th>Quantidade</th>
+                                        <th>Medida</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="button">
+                            <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Pesquisar</button>
+                            <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Editar</button>
+                            <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="adicionarProduto()">Cadastrar</button>
+                        </div>
+                    </div>
+                    <div id="painel-pedidos-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <div id="container-pedidos" style="display: block;">
+                            <input type="text" id="fornecedor" class="input-field" style="width: 50%; margin-left: 10px; margin-top: 30px" placeholder="Fornecedor">
+                            <input type="number" id="pedido" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Pedido">
+                            <button class="button" style="color: black" onclick="emConstrucao()">Pesquisar</button>
+                            <input type="text" id="material" class="input-field" style="width: 40%; margin-left: 10px" placeholder="Material">
+                            <input type="color" id="cor" class="input-field" style="width: 9%; margin-left: 10px" placeholder="Cor">
+                            <input type="number" id="quantidade" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Quantidade">
+                            <button class="button" style="color: black" onclick="adicionarProdutoPedido()">Adicionar</button>
+                            <div class="container2">    
                             </div>
-                          </div>
-                  
-                        </div>    
+                            <!-- Tabela de rolagem -->
+                            <div class="scrollable-table">
+                                <table id="tabela-pedidos" class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Fornecedor</th>
+                                            <th>Material</th>
+                                            <th>Cor</th>
+                                            <th>Quantidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="button">
+                                <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Excluir</button>
+                                <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Visualizar</button>
+                                <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Salvar</button>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="container2">
-                        <label id="cor">COR</label>
-                        <input type="color" id="cor" name="cor" class="input-color" value="#ffffff" style="width: 50%; margin-left: 10px;">
-                    </div>
-                    
-                    <!-- <button class="button" style="color: black">Buttom 1</button> -->
-
-                    <!-- Tabela de rolagem -->
-                    <div class="scrollable-table">
-                        <table id="tabela-estoque" class="styled-table">
-                            <thead>
-                                <tr>
-                                    <th>Item</th>
-                                    <th>Cor</th>
-                                    <th>Quantidade</th>
-                                    <th>Medida</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="button">
-                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Pesquisar</button>
-                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Editar</button>
-                        <button class="button" style="color: #5F9EA0" onclick="adicionarProduto()">Cadastrar</button>
-                    </div>
-                        
-                </div>
-                <div id="painel-pedidos-estoque" class="painel-colorido" style="display: none;">
-                    <input type="text" id="login" class="input-field" style="width: 50%; margin-left: 10px" placeholder="IMPUT 1">
-                    <button class="button" style="color: black">Buttom 1</button>
                 </div>
             </div>
         </div>
-    </div>
-
-   
-    <script>
-
-		function mostrarPainel(painel) {
-			// Oculta todos os painéis coloridos
-			document.getElementById("painel-venda").style.display = "none";
-			document.getElementById("painel-pedidos").style.display = "none";
-			document.getElementById("painel-produtos").style.display = "none";
-			document.getElementById("painel-cadastro-estoque").style.display = "none";
-			document.getElementById("painel-pedidos-estoque").style.display = "none";
-
-			// Exibe o painel colorido correspondente ao botão clicado
-			document.getElementById("painel-" + painel).style.display = "block";
-		}
-	
-        // Função para mostrar o conteúdo correspondente ao botão clicado
-        function showContent(contentId) {
-            // Oculta todos os conteúdos
-            const allContents = document.querySelectorAll('.content > div');
-            allContents.forEach(content => {
-                content.style.display = 'none';
-            });
-
-            // Mostra o conteúdo correspondente ao botão clicado
-            const selectedContent = document.getElementById(contentId);
-            selectedContent.style.display = 'block';
-			
-			// Remove a classe 'active' de todos os links da barra lateral
-			sidebarLinks.forEach(link => {
-				link.classList.remove('active');
-			});
-			
-			// Adiciona a classe 'active' ao link do botão selecionado
-			const selectedLink = document.querySelector('.sidebar a[href="#' + contentId + '"]');
-			selectedLink.classList.add('active');
-					
-        }
-		
-		// Seleciona todos os botões com a classe "button-secondary"
-        const buttons = document.querySelectorAll('.button-secondary');
-
-        // Adiciona um ouvinte de evento de clique a cada botão
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove a classe "active" de todos os botões
-                buttons.forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                // Adiciona a classe "active" ao botão clicado
-                button.classList.add('active');
-            });
-        });
-
-        // Define a ação para cada link da barra lateral
-        const sidebarLinks = document.querySelectorAll('.sidebar a');
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                const contentId = link.getAttribute('href').substring(1);
-                showContent(contentId);
-            });
-        });
-
-        // Mostra o conteúdo padrão (COMERCIAL) ao carregar a página
-        showContent('comercial');
-
-        const produtosPreCadastrados = [
-            { item: "Jeans", cor: "Preto", quantidade: 1000, medida: "Metros" },
-            { item: "Zíper", cor: "Prata", quantidade: 1000, medida: "Unidades" },
-            { item: "Malha", cor: "Rosa", quantidade: 1000, medida: "Metros" },
-            // Adicione outros produtos aqui
-        ];
-        function preencherTabelaProdutosPreCadastrados() {
-            const tabela = document.getElementById("tabela-estoque");
-            const tbody = tabela.querySelector("tbody");
-
-            produtosPreCadastrados.forEach(produto => {
-                const novaLinha = document.createElement("tr");
-                novaLinha.innerHTML = `
-                    <td>${produto.item}</td>
-                    <td>${produto.cor}</td>
-                    <td>${produto.quantidade}</td>
-                    <td>${produto.medida}</td>
-                `;
-
-                novaLinha.addEventListener("dblclick", function() {
-                alert(`Você Clicou duas Vezes em ${produto.item}`);
-            });
-
-                tbody.appendChild(novaLinha);
-            });
-        }
-
-        // Chame a função para preencher a tabela quando a página carregar
-        window.addEventListener("load", preencherTabelaProdutosPreCadastrados);
-
-        function adicionarProduto() {
-            // Obtenha os valores do formulário
-            const item = document.getElementById("item").value;
-            const cor = document.getElementById("cor").value;
-            const quantidade = document.getElementById("quant").value;
-            const medida = document.querySelector('input[name="radio"]:checked').value;
-
-            // Crie uma nova linha na tabela
-            const tabela = document.getElementById("tabela-estoque");
-            const tbody = tabela.querySelector("tbody");
-
-            const novaLinha = document.createElement("tr");
-            novaLinha.innerHTML = `
-                <td>${item}</td>
-                <td>${cor}</td>
-                <td>${quantidade}</td>
-                <td>${medida}</td>
-            `;
-
-            novaLinha.addEventListener("dblclick", function() {
-                alert(`Você Clicou duas Vezes em ${item}`);
-            });
-
-            // Adicione a nova linha à tabela
-            tbody.appendChild(novaLinha);
-
-            // Limpe os campos do formulário
-            document.getElementById("item").value = "";
-            document.getElementById("cor").value = "#ffffff";
-            document.getElementById("quant").value = "";
-            const radios = document.querySelectorAll('input[name="radio"]');
-            radios.forEach(radio => {
-                radio.checked = false;
-            });
-        }
-
-        function emConstrucao(){
-            window.alert("Função em Construção! - Volte mais tarde")
-        }
-    </script>
-</body>
+        <script src="js/estoque.js"></script> <!-- Link para o arquivo JavaScript -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
+    </body>
 </html>
