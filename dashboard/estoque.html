@@ -49,10 +49,6 @@
                             </div>
                         </div>
                         <input type="text" id="cor" class="input-field" style="width: 65%; margin-top: 15px" placeholder="Cor">
-                        <!-- <div class="container2">
-                            <label id="cor">COR</label>
-                            <input type="color" id="cor" name="cor" class="input-color" value="#ffffff" style="width: 50%; margin-left: 10px;">
-                        </div> -->
                         <!-- Tabela de rolagem -->
                         <div class="scrollable-table">
                             <table id="tabela-estoque" class="styled-table">
@@ -92,6 +88,7 @@
                                 <table id="tabela-pedidos" class="styled-table">
                                     <thead>
                                         <tr>
+                                            <th>Pedido</th>
                                             <th>Fornecedor</th>
                                             <th>Material</th>
                                             <th>Cor</th>
@@ -105,7 +102,7 @@
                             </div>
                             <div id="button">
                                 <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Excluir</button>
-                                <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Visualizar</button>
+                                <button class="button" style="color: #5F9EA0; margin-left: 10px;" id="BtnEditPed">Visualizar</button>
                                 <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Salvar</button>
                                 
                             </div>
@@ -129,6 +126,30 @@
                 <input type="text" id="cor-modal" name="cor" class="input-field" style="width: 95%; margin-left: 10px;  height: 20px" placeholder="Cor">
                 <button class="button-modal" style="color: white" onclick="emConstrucao()">Cadastrar</button>
                 <button class="button-modal" style="color: white" onclick="emConstrucao()">Editar</button>
+            </div>
+        </div>
+
+        <div id="myModalPed" class="modal">
+            <div class="modal-content" style="text-align: left;">
+                <span class="close" onclick="fecharModal()">&times;</span>
+                <div id="NPedidoModal" style="display: flex;">
+                    <div id="pedido-modal" style="text-align: left; height: 50%; width: 30%;"></div>
+                    <div id="fornecedor-modal" style="text-align: left; height: 50%; width: 30%;"></div>
+                </div>
+                <div class="scrollable-table">
+                    <table id="tabela-modal-pedidos" class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Material</th>
+                                <th>Cor</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-modal-pedidos-body">
+                            <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         

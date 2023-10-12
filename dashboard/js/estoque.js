@@ -43,6 +43,14 @@ function highlightRow(row) {
 	} else {
 		linhaClicada = null; // Remove o destaque se a mesma linha for clicada novamente
 	}
+
+	document.getElementById('BtnEditProd').addEventListener("click", function() {
+		abrirModal(linhaClicada);
+	});
+	document.getElementById('BtnEditPed').addEventListener("click", function() {
+		abrirModalPedido(linhaClicada);
+	});
+	
 }
 
 const produtosPreCadastrados = [
@@ -50,6 +58,11 @@ const produtosPreCadastrados = [
 	{ item: "Zíper", cor: "Prata", quantidade: 1000, medida: "Unidades" },
 	{ item: "Malha", cor: "Rosa", quantidade: 1000, medida: "Metros" },
 	// Adicione outros produtos aqui
+];
+
+const pedidosPreCadastrados = [
+	{ pedido: 25896321, fornecedor: "Doidão", material: "Jeans", cor: "Dourado", quantidade: 258},
+	// Adicione outros ´pedidos aqui
 ];
 
 function abrirModal(row) {
@@ -76,19 +89,59 @@ function abrirModal(row) {
     var selectedValue = document.getElementById("selectedValue");
     selectedValue.textContent = medidaSelect.options[medidaSelect.selectedIndex].text;
 }
+function abrirModalPedido(row) {
+
+	document.getElementById("pedido-modal").value = row.cells[0].textContent;
+    // Preencha os campos do modal com os dados da linha clicada
+	document.getElementById("fornecedor-modal").value = row.cells[1].textContent;
+    // document.getElementById("material-modal").value = row.cells[2].textContent;
+	// document.getElementById("cor-modal").value = row.cells[3].textContent;
+	// document.getElementById("quantidade-pedido").value = row.cells[4].textContent;
+
+	NPedidoModal.innerHTML =`
+		<h1> #${document.getElementById("pedido-modal").value = row.cells[0].textContent} </h1>
+		<h1>  |  ${document.getElementById("fornecedor-modal").value = row.cells[1].textContent}</h1>
+	`;
+
+	// // Preencha a tabela do modal
+    // var tabelaModal = document.getElementById("tabela-modal-pedidos-body");
+    // tabelaModal.innerHTML = ""; // Limpe o conteúdo anterior da tabela
+
+    // // Dados que você deseja adicionar à tabela (substitua por seus próprios dados)
+    // var dados = [
+    //     ["Material 1", "Cor 1", 10],
+    //     ["Material 2", "Cor 2", 20],
+    //     ["Material 3", "Cor 3", 30]
+    // ];
+
+    // // Itere sobre os dados e crie linhas na tabela
+    // dados.forEach(function (item) {
+    //     var row = tabelaModal.insertRow();
+    //     for (var i = 0; i < 3; i++) { // 3 colunas
+    //         var cell = row.insertCell(i);
+    //         cell.innerHTML = item[i];
+    //     }
+    // });
+
+    // Exiba o modal
+    var modal = document.getElementById("myModalPed");
+    modal.style.display = "block";
+}
 
 // Função para fechar o modal
 function fecharModal() {
 	var modal = document.getElementById("myModal");
+	var modalPed = document.getElementById("myModalPed")
 	modal.style.display = "none";
+	modalPed.style.display = "none";
 }
 
 // Evento de clique em uma linha da tabela
-var tabela = document.getElementById("tabela-estoque");
-var linhas = tabela.getElementsByTagName("tr");
-for (var i = 0; i < linhas.length; i++) {
-	linhas[i].addEventListener("click", function () {
-		abrirModal(this);
+var tabelaPed = document.getElementById("tabela-pedidos");
+var linhasPed = tabelaPed.getElementsByTagName("tr");
+for (var i = 0; i < linhasPed.length; i++) {
+	linhasPed[i].addEventListener("click", function () {
+		abrirModalPedido(this);
 	});
 }
 
@@ -121,9 +174,33 @@ function preencherTabelaProdutosPreCadastrados() {
 	});
 }
 
+function preencherTabelaPedidosPreCadastrados() {
+	const tabela = document.getElementById("tabela-pedidos");
+	const tbody = tabela.querySelector("tbody");
+
+	pedidosPreCadastrados.forEach(pedido => {
+		const novaLinha = document.createElement("tr");
+		novaLinha.setAttribute("onclick", "highlightRow(this)");
+		novaLinha.innerHTML = `
+			<td>${pedido.pedido}</td>
+			<td>${pedido.fornecedor}</td>
+			<td>${pedido.material}</td>
+			<td>${pedido.cor}</td>
+			<td>${pedido.quantidade}</td>
+		`;
+		
+		novaLinha.addEventListener("dblclick", function() {
+		abrirModalPedido(this);	
+	});
+
+		tbody.appendChild(novaLinha);
+	});
+}
+
 
 // Chame a função para preencher a tabela quando a página carregar
 window.addEventListener("load", preencherTabelaProdutosPreCadastrados);
+window.addEventListener("load", preencherTabelaPedidosPreCadastrados);
 
 function adicionarProduto() {
 	// Obtenha os valores do formulário
@@ -192,6 +269,7 @@ function adicionarProduto() {
 
 function adicionarProdutoPedido() {
 	// Obtenha os valores do formulário
+	const pedido = document.getElementById("pedido").value;
 	const fornecedor = document.getElementById("fornecedor").value;
 	const material = document.getElementById("material-pedido").value;
 	const quantidade = document.getElementById("quantidade-pedido").value;
@@ -202,7 +280,9 @@ function adicionarProdutoPedido() {
 	const tbody = tabela.querySelector("tbody");
 
 	const novaLinha = document.createElement("tr");
+	novaLinha.setAttribute("onclick", "highlightRow(this)");
 	novaLinha.innerHTML = `
+		<td>${pedido}</td>
 		<td>${fornecedor}</td>
 		<td>${material}</td>
 		<td>${cor}</td>
