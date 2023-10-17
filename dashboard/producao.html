@@ -26,9 +26,41 @@
                     <button class="button-secondary button-aguardando" onclick="mostrarPainel('aguardando')">AGUARDANDO</button>
                     <button class="button-secondary button-pedidos" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
                     <div id="painel-executando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
-                        <h1 style="margin-left: 10px">Conteúdo do Painel de Executando</h1>
-                        <input type="text" id="input-executando" class="input-field" style="width: 50%" placeholder="Input Executando">
-                        <button class="button" style="color: black">Botão Executando</button>
+                        <input type="text" id="input-aguardando" class="input-field" style="width: 80%;" placeholder="Número do pedido">
+                        <button class="button" style="color: black; width: 10%;">Buscar </button>
+                        <table id="tabela-pagamentos" class="styled-table" style="height: 100%; width: 98%;">
+                            <thead>
+                                <tr>
+                                    <td style="width: 15%;">N Pedido</td>
+                                    <td style="width: 50%;">Material</td>
+                                    <td styke="width 20%"> Status</td>
+                                    <td style="width: 25%;">Acoes</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 15%;">1243278</td>
+                                    <td style="width: 50%;">Calça Jeans</td>
+                                    <td style="width: 20%;">Em produção</td>
+                                    <td class="button" style="color: rgb(0, 0, 0);">CANCELAR</button>  <button class="button" style="color: rgb(0, 0, 0)">PAUSAR</button>
+                                    
+                                </tr>
+                                <tr>
+                                    <td style="width: 15%;">1258278</td>
+                                    <td style="width: 50%;">Camiseta</td>
+                                    <td style="width: 20%;">Em produção</td>
+                                    <td class="button" style="color: rgb(0, 0, 0);">CANCELAR</button>  <button class="button" style="color: rgb(0, 0, 0)">PAUSAR</button>
+                                    
+                                </tr>
+                                <tr>
+                                    <td style="width: 15%;">12432</td>
+                                    <td style="width: 50%;">Cueca</td>
+                                    <td style="width: 20%;">Finalizado</td>
+                                    <td class="button" style="color: rgb(0, 0, 0);">CANCELAR</button>  <button class="button" style="color: rgb(0, 0, 0)">PAUSAR</button>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
                     <div id="painel-aguardando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
                         
