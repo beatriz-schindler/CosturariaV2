@@ -24,13 +24,14 @@
                 <div class="painel" style="height: 100%; width: 100%; text-align: left">
                     <button class="button-secondary button-cadastro-estoque" onclick="mostrarPainel('cadastro-estoque')">CADASTROS</button>
 					<button class="button-secondary button-pedidos-estoque" onclick="mostrarPainel('pedidos-estoque')">PEDIDOS</button>
+                    <button class="button-secondary button-listagem-pedidos" onclick="mostrarPainel('listagem-pedidos')">LISTAGEM</button>
 
                     <div id="painel-cadastro-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
                         <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 15px" placeholder="Matéria">
 						
                         <div class="container">
                             <div class="radio-tile-group">
-                                <!-- <input type="number" id="quant" class="input-field" style="width: 30%; height: 45px; margin-right: 80px;" placeholder="Quantidade"> -->
+                                
                                 <input type="number" id="quant" class="input-field" style="width: 30%; height: 20px;" placeholder="Quantidade">
                                 
 								<div class="input-container">
@@ -75,7 +76,7 @@
                     <div id="painel-pedidos-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
                         <div id="container-pedidos" style="display: block;">
                             <input type="text" id="fornecedor" class="input-field" style="width: 50%; margin-left: 10px; margin-top: 30px" placeholder="Fornecedor">
-                            <input type="number" id="pedido" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Pedido">
+                            <input type="text" id="numero-pedido" class="input-field" style="width: 20%; margin-left: 10px" readonly placeholder="Pedido">
                             <button class="button" style="color: black" onclick="emConstrucao()">Pesquisar</button>
                             <input type="text" id="material-pedido" class="input-field" style="width: 39%; margin-left: 10px" placeholder="Material">
                             <input type="text" id="cor-pedido" class="input-field" style="width: 8%; margin-left: 10px" placeholder="Cor">
@@ -100,11 +101,36 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                    <div id="painel-listagem-pedidos" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
+                        <div id="container-pedidos" style="display: block;">
+                            <input type="text" id="fornecedor-listagem" class="input-field" style="width: 50%; margin-left: 10px; margin-top: 30px" placeholder="Fornecedor">
+                            <input type="number" id="pedido-listagem" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Pedido">
+                            <button class="button" style="color: black" onclick="realizarPesquisa()">Pesquisar</button>
+
+                            <div class="container2">    
+                            </div>
+                            <!-- Tabela de rolagem -->
+                            <div class="scrollable-table">
+                                <table id="tabela-listagem" class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pedido</th>
+                                            <th>Fornecedor</th>
+                                            <th>Material</th>
+                                            <th>Cor</th>
+                                            <th>Quantidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
                             <div id="button">
                                 <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Excluir</button>
-                                <button class="button" style="color: #5F9EA0; margin-left: 10px;" id="BtnEditPed">Visualizar</button>
-                                <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Salvar</button>
-                                
+                                <button class="button" style="color: #5F9EA0; margin-left: 10px;" id="BtnEditList">Editar</button>
                             </div>
                         </div>
                     </div>
@@ -146,6 +172,7 @@
                             </tr>
                         </thead>
                         <tbody id="tabela-modal-pedidos-body">
+                           
                             <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
                         </tbody>
                     </table>
