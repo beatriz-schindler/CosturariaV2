@@ -4,8 +4,42 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Financeiro V2</title>
-        <link rel="stylesheet" href="styles.css"><!-- Link para o arquivo CSS -->
-        <link rel="stylesheet" href="css/financeiro.css"><!-- Link para o arquivo CSS -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- Link para o arquivo CSS -->
+        <link rel="stylesheet" href="css/financeiro.css">
+        <!-- Link para o arquivo CSS -->
+        <style>
+            .modal {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.7);
+			}
+			
+            .modal-content {
+				background-color: white;
+				margin: 15% auto;
+				padding: 20px;
+				width: 70%;
+				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				text-align: center;
+			}
+			
+            .button-modal{
+				background-color: #5F9EA0;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				padding: 10px 20px;
+				cursor: pointer;
+				width: 18%;
+				text-align: center;
+				vertical-align: top;
+            }
+        </style>
     </head>
     <body>
         <div class="sidebar">
@@ -21,9 +55,8 @@
         <div class="content">
             <div id="financeiro">
                 <div class="painel" style="height: 100%; width: 100%; text-align: left">
-                   <button class="button-secondary button-payment active" id="btn-pagamentos">PAGAMENTOS</button>
-					<button class="button-secondary button-receipts" id="btn-recebimentos">RECEBIMENTOS</button>
-
+                    <button class="button-secondary button-payment active" id="btn-pagamentos">PAGAMENTOS</button>
+                    <button class="button-secondary button-receipts" id="btn-recebimentos">RECEBIMENTOS</button>
                     <!-- Painel de Pagamentos -->
                     <div id="painel-pagamentos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
                         <!-- Rótulo para campo de data inicial -->
@@ -48,11 +81,11 @@
                         <!-- Rótulo para faixa de valores -->
                         <label for="filtro" style="margin-left: 10px; display: inline-block;">Valor entre</label>
                         <!-- Campo de entrada para valor mínimo -->
-                        <input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor" oninput="formatarCampoValor()">
                         <!-- Rótulo para faixa de valores -->
                         <label for="filtro" style="margin-left: 10px; display: inline-block;">à</label>
                         <!-- Campo de entrada para valor máximo -->
-                        <input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <input type="text" id="input-pagamentos" class="input-field" style="width: 100px" placeholder="Valor" oninput="formatarCampoValor()">
                         <!-- Rótulo para seleção de fornecedores -->
                         <label for="filtro" style="margin-left: 5px; display: inline-block;">Fornecedores</label>
                         <!-- Contêiner para seleção de fornecedores -->
@@ -80,25 +113,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
-                                </tbody>
+                                    <!-- As linhas da tabela serão preenchidas com dados de imput -->
+									<tr onclick="highlightRowPagto(this)">
+										<td>1</td>
+										<td>Pagador</td>
+										<td>2000</td>
+										<td>3333-03-12</td>
+										<td>Dinheiro</td>
+										<td>Aberto</td>
+									</tr>
+								</tbody>
                             </table>
                         </div>
                         <!-- Contêiner para botões -->
                         <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; display: flex; justify-content: space-between;">
                             <!-- Botão de registro -->
-                            <button class="button" style="color: black; width: 150px;" id="btnRegistrarPag">Registrar</button>
+                            <!-- <button class="button" style="color: black; width: 150px;" id="btnRegistrarPag">Registrar</button> -->
+							<button class="button" style="color: black; width: 150px;" id="btnRegistrarPag" onclick="abrirModalPagto()">Registrar</button>
+
                             <!-- Botão de alteração -->
-                            <button class="button" style="color: black; width: 150px;">Alterar</button>
+                            <!-- <button class="button" style="color: black; width: 150px;" id="btnAlterarPag">Alterar</button> -->
+							<button class="button" style="color: black; width: 150px;" id="btnEditarRec" onclick="editarLinhaPagto()">Editar</button>
                             <!-- Botão para gerar fatura -->
                             <button class="button" style="color: black; width: 150px;">Gerar Fatura</button>
-							<!-- Botão para gerar PDF da lista -->
+                            <!-- Botão para gerar PDF da lista -->
                             <button class="button" style="color: black; width: 150px;">Exportar Relatório</button>
                         </div>
                     </div>
-					
                     <!-- Painel de Recebimentos -->
-					<div id="painel-recebimentos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                    <div id="painel-recebimentos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
                         <!-- Rótulo para campo de data inicial -->
                         <label for="data" style="margin-left: 10px; display: inline-block;">Data entre</label>
                         <!-- Campo de entrada de data inicial com identificador "data" -->
@@ -121,11 +164,11 @@
                         <!-- Rótulo para faixa de valores -->
                         <label for="filtro" style="margin-left: 10px; display: inline-block;">Valor entre</label>
                         <!-- Campo de entrada para valor mínimo -->
-                        <input type="text" id="input-Racebimentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <input type="text" id="input-Racebimentos" class="input-field" style="width: 100px" placeholder="Valor" oninput="formatarCampoValor()">
                         <!-- Rótulo para faixa de valores -->
                         <label for="filtro" style="margin-left: 10px; display: inline-block;">à</label>
                         <!-- Campo de entrada para valor máximo -->
-                        <input type="text" id="input-Racebimentos" class="input-field" style="width: 100px" placeholder="Valor">
+                        <input type="text" id="input-Racebimentos" class="input-field" style="width: 100px" placeholder="Valor" oninput="formatarCampoValor()">
                         <!-- Rótulo para seleção de fornecedores -->
                         <label for="filtro" style="margin-left: 5px; display: inline-block;">Clientes</label>
                         <!-- Contêiner para seleção de fornecedores -->
@@ -160,21 +203,157 @@
                         <!-- Contêiner para botões -->
                         <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; display: flex; justify-content: space-between;">
                             <!-- Botão de registro -->
-							<button class="button" style="color: black; width: 150px;" id="btnRegistrarRec">Registrar</button>
+                            <button class="button" style="color: black; width: 150px;" id="btnRegistrarRec" onclick="abrirModalRecto()">Registrar</button>
                             <!-- Botão de alteração -->
-                            <button class="button" style="color: black; width: 150px;">Alterar</button>
+                            <!-- <button class="button" style="color: black; width: 150px;" id="btnAlterarRec">Alterar</button> -->
+							<!-- <button class="button" style="color: black; width: 150px;" onclick="editarLinhaRecto()">Alterar</button> -->
+							<!-- Botão para editar -->
+							<button class="button" style="color: black; width: 150px;" id="btnEditarRec" onclick="editarLinhaRecto()">Editar</button>
+
+
                             <!-- Botão para gerar fatura -->
-                            <button class="button" style="color: black; width: 150px;">Gerar Fatura</button>
-							<!-- Botão para gerar PDF da lista -->
+                            <button class="button" style="color: black; width: 150px;" id="btnImprimirFaturaRec" onclick="imprimirFatura()" >Gerar Fatura</button>
+                            <!-- Botão para gerar PDF da lista -->
                             <button class="button" style="color: black; width: 150px;">Exportar Relatório</button>
                         </div>
                     </div>
+                </div>
 
-				</div>
             </div>
         </div>
-
-        <script src="js/financeiro.js"></script> <!-- Link para o arquivo JavaScript -->
 		
+		<!-- Modal -->
+		<div id="myModalPagto" class="modal">
+			<div class="modal-content">
+				<div style="text-align: left;">
+					<div>
+						<label style="margin-left: 10px; display: inline-block; font-size: 14px;">Posição</label>
+						<label style="margin-left: 120px; display: inline-block; font-size: 14px;">Fornecedor</label>
+					</div>
+					<div>
+						<input type="text" id="position-pagto" class="input-field" style="width: 15%; height: 20px; margin-top: 5px;" placeholder="Gerado Automaticamente" readonly>
+						<input type="text" id="forne-pagto" class="input-field" style="width: 75%; height: 20px;" placeholder="Fornecedor">
+					</div>
+				</div>
+				<div style="text-align: left;">
+					<div>
+						<label style="margin-left: 10px; display: inline-block; font-size: 14px;">Valor</label>
+						<label style="margin-left: 193px; display: inline-block; font-size: 14px;">Data</label>
+						<label style="margin-left: 200px; display: inline-block; font-size: 14px;">Forma de Recto</label>
+						<label style="margin-left: 110px; display: inline-block; font-size: 14px;">Status</label>
+					</div>
+					<div>
+						<input type="text" id="valor-pagto" class="input-field" style="width: 20%; height: 20px;" placeholder="Valor" oninput="formatarCampoValor('valor-pagto')">
+						<!-- <input type="number" id="valor-pagto" class="input-field" style="width: 21%; height: 20px;" placeholder="Valor"> -->
+						<input type="date" id="data-pagto" class="input-field" style="width: 22%; height: 25px;" placeholder="Data">
+						<select name="pagto" id="forma-pagto" style="margin-left: 10px; width: 22%; height: 42px;">
+							<option value="Pix">Pix</option>
+							<option value="Dinheiro">Dinheiro</option>
+							<option value="Cartão de Crédito">Cartão de Crédito</option>
+							<option value="Cartão de Débito">Cartão de Débito</option>
+							<option value="Boleto">Boleto</option>
+							<option value="Transferencia Bancária">Transferencia Bancária</option>
+						</select>
+						<select name="status" id="status-pagto" style="margin-left: 10px; width: 22%; height: 42px;">
+							<option value="Aberto">Aberto</option>
+							<option value="Fechado">Fechado</option>
+						</select>
+					</div>
+				</div>			
+				<button class="button-modal" style="color: white; margin-top: 10px;" onclick="cadastrarPagto()">Cadastrar</button>
+				<button class="button-modal" style="color: white; margin-top: 10px;" onclick="fecharModalPagto()">Cancelar</button>
+			</div>
+		</div>
+		
+		<div id="myModalRecto" class="modal">
+			<div class="modal-content">
+				<div style="text-align: left;">
+					<div>
+						<label style="margin-left: 10px; display: inline-block; font-size: 14px;">Posição</label>
+						<label style="margin-left: 120px; display: inline-block; font-size: 14px;">Fornecedor</label>
+					</div>
+					<div>
+						<input type="text" id="position-recto" class="input-field" style="width: 15%; height: 20px; margin-top: 15px" placeholder="Será gerado automaticamente" readonly>
+						<input type="text" id="cliente-recto" class="input-field" style="width: 75%; height: 20px;" placeholder="Cliente">
+					</div>
+				</div>
+				<div style="text-align: left;">
+					<div>
+						<label style="margin-left: 10px; display: inline-block; font-size: 14px;">Valor</label>
+						<label style="margin-left: 193px; display: inline-block; font-size: 14px;">Data</label>
+						<label style="margin-left: 200px; display: inline-block; font-size: 14px;">Forma de Recto</label>
+						<label style="margin-left: 110px; display: inline-block; font-size: 14px;">Status</label>
+					</div>
+					<div>
+						<input type="text" id="valor-recto" class="input-field" style="width: 20%; height: 20px;" placeholder="Valor" oninput="formatarCampoValor('valor-recto')">
+						<!-- <input type="number" id="valor-recto" class="input-field" style="width: 20%; height: 20px;" placeholder="Valor"> -->
+						<input type="date" id="data-recto" class="input-field" style="width: 22%; height: 25px;" placeholder="Data">
+						<select name="pagto" id="pagto-recto" style="margin-left: 10px; width: 22%; height: 42px;">
+							<option value="Pix">Pix</option>
+							<option value="Dinheiro">Dinheiro</option>
+							<option value="Cartão de Crédito">Cartão de Crédito</option>
+							<option value="Cartão de Débito">Cartão de Débito</option>
+							<option value="Boleto">Boleto</option>
+							<option value="Transferencia Bancária">Transferencia Bancária</option>
+						</select>
+						<select name="status" id="status-recto" style="margin-left: 10px; width: 22%; height: 42px;">
+							<option value="Aberto">Aberto</option>
+							<option value="Fechado">Fechado</option>
+						</select>
+					</div>
+				</div>
+				<button class="button-modal" style="color: white" onclick="cadastrarRecto()">Cadastrar</button>
+				<button class="button-modal" style="color: white" onclick="fecharModalRecto()">Cancelar</button>
+			</div>
+		</div>
+		
+		<!-- Modal Edição -->
+		<div id="myModalPagtoEdit" class="modal">
+			<div class="modal-content">
+				<input type="text" id="position-pagto-edit" class="input-field" style="width: 15%; height: 20px; margin-top: 15px" placeholder="Posição">
+				<input type="text" id="forne-pagto-edit" class="input-field" style="width: 60%; height: 20px;" placeholder="Cliente">
+				<input type="number" id="valor-pagto-edit" class="input-field" style="width: 20%; height: 20px;" placeholder="Valor" oninput="formatarCampoValor('valor-pagto-edit')">
+				<input type="date" id="data-pagto-edit" class="input-field" style="width: 20%; height: 25px;" placeholder="Data">
+				<select name="pagto" id="pagto-pagto-edit" style="width: 20%; height: 42px;">
+					<option value="Pix">Pix</option>
+					<option value="Dinheiro">Dinheiro</option>
+					<option value="Cartão de Crédito">Cartão de Crédito</option>
+					<option value="Cartão de Débito">Cartão de Débito</option>
+					<option value="Boleto">Boleto</option>
+					<option value="Transferencia Bancária">Transferencia Bancária</option>
+				</select>
+				<select name="status" id="status-pagto-edit" style="width: 20%; height: 42px;">
+					<option value="Aberto">Aberto</option>
+					<option value="Fechado">Fechado</option>
+				</select>
+				<button class="button-modal" style="color: white" onclick="salvarEdicaoRecto()">Atualizar</button>
+				<button class="button-modal" style="color: white" onclick="fecharModalRectoEdit()">Cancelar</button>
+			</div>
+		</div>
+		
+		<div id="myModalRectoEdit" class="modal">
+			<div class="modal-content">
+				<input type="text" id="position-recto-edit" class="input-field" style="width: 15%; height: 20px; margin-top: 15px" placeholder="Posição"  readonly>
+				<input type="text" id="cliente-recto-edit" class="input-field" style="width: 60%; height: 20px;" placeholder="Cliente">
+				<input type="text" id="valor-recto-edit" class="input-field" style="width: 20%; height: 20px;" placeholder="Valor" oninput="formatarCampoValor('valor-recto-edit')">
+				<input type="date" id="data-recto-edit" class="input-field" style="width: 20%; height: 25px;" placeholder="Data">
+				<select name="pagto" id="pagto-recto-edit" style="width: 20%; height: 42px;">
+					<option value="Pix">Pix</option>
+					<option value="Dinheiro">Dinheiro</option>
+					<option value="Cartão de Crédito">Cartão de Crédito</option>
+					<option value="Cartão de Débito">Cartão de Débito</option>
+					<option value="Boleto">Boleto</option>
+					<option value="Transferencia Bancária">Transferencia Bancária</option>
+				</select>
+				<select name="status" id="status-recto-edit" style="width: 20%; height: 42px;">
+					<option value="Aberto">Aberto</option>
+					<option value="Fechado">Fechado</option>
+				</select>
+				<button class="button-modal" style="color: white" onclick="salvarEdicaoRecto()">Atualizar</button>
+				<button class="button-modal" style="color: white" onclick="fecharModalRectoEdit()">Cancelar</button>
+			</div>
+		</div>
+
+		<script src="js/financeiro.js"></script> <!-- Link para o arquivo JavaScript -->
     </body>
 </html>
