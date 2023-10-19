@@ -6,6 +6,7 @@
         <title>Produção  V2</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="css/producao.css">
+        <link rel="stylesheet" href="css/comercial.css">
         <!-- Link para o arquivo CSS -->
     </head>
     <body>
@@ -24,8 +25,9 @@
                 <div class="painel" style="height: 100%; width: 100%; text-align: left">
                     <button class="button-secondary button-executando active" onclick="mostrarPainel('executando')">EXECUTANDO</button>
                     <button class="button-secondary button-aguardando" onclick="mostrarPainel('aguardando')">AGUARDANDO</button>
-                    <button class="button-secondary button-pedidos" onclick="mostrarPainel('pedidos')">PEDIDOS</button>
-                    <div id="painel-executando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
+                    <button class="button-secondary button-pedidos" onclick="mostrarPainel('pedidos')">HISTORICO</button>
+
+                    <div id="painel-executando" class="painel-colorido"  style="height: 100%; width: 80.1%; text-align: center">
                         <input type="text" id="input-aguardando" class="input-field" style="width: 80%;" placeholder="Número do pedido">
                         <button class="button" style="color: black; width: 10%;">Buscar </button>
                         <table id="tabela-pagamentos" class="styled-table" style="height: 100%; width: 98%;">
@@ -36,25 +38,32 @@
                                     <td styke="width 20%"> Status</td>
                                     <td style="width: 25%;">Acoes</td>
                                 </tr>
-                                <tr>
-                                    <td style="width: 15%;">1243278</td>
+                                <tr onclick="highlightRow(this)">
+                                    <td onclick="highlightRow(this)" style="width: 15%;">1243278</td>
                                     <td style="width: 50%;">Calça Jeans</td>
                                     <td style="width: 20%;">Em produção</td>
-                                    <td class="button" style="color: rgb(0, 0, 0);">CANCELAR</button>  <button class="button" style="color: rgb(0, 0, 0)">PAUSAR</button>
-                                    
+                                    <td>
+                                        <img src="../resources/cancelar.png" alt="" style="height: 15px; width: 15px;">
+                                        <img src="../resources/pause.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 15%;">1258278</td>
                                     <td style="width: 50%;">Camiseta</td>
-                                    <td style="width: 20%;">Em produção</td>
-                                    <td class="button" style="color: rgb(0, 0, 0);">CANCELAR</button>  <button class="button" style="color: rgb(0, 0, 0)">PAUSAR</button>
-                                    
+                                    <td style="width: 20%;">Pausado</td>
+                                    <td>
+                                        <img src="../resources/cancelar.png" alt="" style="height: 15px; width: 15px;">
+                                        <img src="../resources/pause.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
+                                    </td>  
                                 </tr>
                                 <tr>
                                     <td style="width: 15%;">12432</td>
                                     <td style="width: 50%;">Cueca</td>
-                                    <td style="width: 20%;">Finalizado</td>
-                                    <td class="button" style="color: rgb(0, 0, 0);">CANCELAR</button>  <button class="button" style="color: rgb(0, 0, 0)">PAUSAR</button>
+                                    <td style="width: 20%;">Cancelado</td>
+                                    <td>
+                                        <img src="../resources/cancelar.png" alt="" style="height: 15px; width: 15px;">
+                                        <img src="../resources/pause.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,7 +71,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="painel-aguardando" class="painel-colorido"  style="height: 100%; width: 79%; text-align: center">
+
+                    <div id="painel-aguardando" class="painel-colorido"  style="height: 90%; width: 80%; text-align: center">
                         
                         <input type="text" id="input-aguardando" class="input-field" style="width: 80%;" placeholder="Número do pedido">
                         <button class="button" style="color: black; width: 10%;">Buscar </button>
@@ -103,6 +113,31 @@
                         </table>
                     </div>
                     <div id="painel-pedidos" class="painel-colorido" style="height: 100%; width: 79%; text-align: center">
+                        <div class="container" style="margin-top: 5%;">
+                            <input type="text" id="input-cadastro" class="input-field" style=" height: 20px; width: 25%; margin-left: 20px;" placeholder="Nº do pedido">
+                            <button class="button" style="color: black; height: 66%; margin-top: 1%; margin-left: 20px; text-align: center;">SITUAÇÃO:</button>
+                            <div class="input-container">
+                                <input id="Metros" type="checkbox" name="tamanho" value="Pequeno">
+                                <div class="radio-tile">
+                                    <label for="Metros">FINALIZADO</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input id="UnidadesMedio" type="checkbox" name="tamanho" value="Médio">
+                                <div class="radio-tile">
+                                    <label for="UnidadesMedio">ANDAMENTO</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input id="UnidadesGrande" type="checkbox" name="tamanho" value="Grande">
+                                <div class="radio-tile">
+                                    <label for="UnidadesGrande">PAUSADO</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                  
                         <div class="scrollable-table">
                             <table id="tabela-pagamentos" class="styled-table" style="height: 100%; width: 98%;">
                                 <thead>

@@ -41,3 +41,23 @@ document.querySelector(".button-pedidos").addEventListener("click", mostrarPaine
 
 // Exibir o painel de Executando ao carregar a página
 window.addEventListener("load", mostrarPainelExecutando);
+
+// Função para destacar a linha clicada e desfazer o destaque das outras
+// Variável para armazenar a linha clicada atualmente
+var linhaClicada = null;
+
+// Função para destacar a linha clicada e desfazer o destaque das outras
+function highlightRow(row) {
+    // Se uma linha já estiver destacada, remova o destaque dela
+    if (linhaClicada !== null) {
+        linhaClicada.style.backgroundColor = '';
+    }
+
+    // Verifica se a linha clicada não é a mesma que a anterior
+    if (row !== linhaClicada) {
+        linhaClicada = row; // Armazena a nova linha clicada
+        row.style.backgroundColor = 'yellow'; // Define a cor de fundo como amarela
+    } else {
+        linhaClicada = null; // Remove o destaque se a mesma linha for clicada novamente
+    }
+}
