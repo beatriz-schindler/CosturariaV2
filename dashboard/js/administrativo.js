@@ -25,6 +25,19 @@ document.querySelector(".button-pedidos").addEventListener("click", mostrarPaine
 // Exibir o painel de Cadastros ao carregar a página
 window.addEventListener("load", mostrarPainelCadastros);
 
+function Checkfiles(){
+    var fup = document.getElementById('filename');
+    var fileName = fup.value;
+    var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+    if(ext =="jpeg" || ext=="png"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 function emConstrucao(){
 	window.alert("Função em Construção! - Volte mais tarde")
 }
