@@ -64,11 +64,16 @@ function highlightRow(row) {
 	document.getElementById('BtnEditProd').addEventListener("click", function() {
 		abrirModal(linhaClicada);
 	});
+
+	// console.log(linhaClicada);
 	document.getElementById('BtnEditList').addEventListener("click", function() {
 		abrirModalPedido(linhaClicada);
 	});
+	console.log(linhaClicada);
 	
 }
+
+
 
 const produtosPreCadastrados = [
 	{ item: "Jeans", cor: "Preto", quantidade: 1000, medida: "Metros" },
@@ -252,7 +257,7 @@ function adicionarProduto() {
 }
 
 function gerarValorAleatorio() {
-	return Math.floor(Math.random() * 1000); // Altere os limites conforme necessário
+	return Math.floor(Math.random() * 10000); // Altere os limites conforme necessário
 }
 
 var campoAleatorio = document.getElementById("numero-pedido");
@@ -402,7 +407,7 @@ function pesquisar() {
 // }
 
 function salvarEdicaoEstoque() {
-
+		console.log(linhaClicada);
 		// Captura os valores dos campos de edição
 		var itemMod = document.getElementById("item-modal").value;
 		var quantMod = document.getElementById("quant-modal").value;
@@ -431,7 +436,7 @@ function salvarEdicaoEstoque() {
 	}
 
 function salvarEdicaoListagem() {
-
+	console.log(linhaClicada);
 	// Captura os valores dos campos de edição
 	var material = document.getElementById("material-modal-ped").value;
 	var cor = document.getElementById("cor-modal-ped").value;
