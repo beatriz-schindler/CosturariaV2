@@ -27,8 +27,8 @@
                     <button class="button-secondary button-listagem-pedidos" onclick="mostrarPainel('listagem-pedidos')">LISTAGEM</button>
 
                     <div id="painel-cadastro-estoque" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
-                        <input type="text" id="item" class="input-field" style="width: 65%; margin-top: 15px" placeholder="Matéria">
-						
+                        <input type="text" id="item" class="input-field" style="width: 30%; margin-top: 15px" placeholder="Matéria">
+						<input type="text" id="cor" class="input-field" style="width: 20%; margin-top: 15px" placeholder="Cor">
                         <div class="container">
                             <div class="radio-tile-group">
                                 
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="text" id="cor" class="input-field" style="width: 65%; margin-top: 15px" placeholder="Cor">
+                        <hr>
                         <!-- Tabela de rolagem -->
                         <div class="scrollable-table">
                             <table id="tabela-estoque" class="styled-table">
@@ -67,7 +67,8 @@
                             </table>
                         </div>
                         <div id="button">
-                            <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Pesquisar</button>
+                            <button class="button" style="color: #5F9EA0" onclick="pesquisarEstoque()">Pesquisar</button>
+                            <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="limparPesquisaEstoque()">Limpar Pesquisa</button>
                             <button class="button" style="color: #5F9EA0; margin-left: 10px;" id="BtnEditProd">Editar</button>
                             <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="adicionarProduto()">Cadastrar</button>
                             <!-- <button class="button" style="color: #5F9EA0; margin-left: 10px;" id="openModalBtn">Abrir Modal</button> -->
@@ -77,40 +78,45 @@
                         <div id="container-pedidos" style="display: block;">
                             <input type="text" id="fornecedor" class="input-field" style="width: 50%; margin-left: 10px; margin-top: 30px" placeholder="Fornecedor">
                             <input type="text" id="numero-pedido" class="input-field" style="width: 20%; margin-left: 10px" readonly placeholder="Pedido">
-                            <button class="button" style="color: black" onclick="emConstrucao()">Pesquisar</button>
-                            <input type="text" id="material-pedido" class="input-field" style="width: 39%; margin-left: 10px" placeholder="Material">
-                            <input type="text" id="cor-pedido" class="input-field" style="width: 8%; margin-left: 10px" placeholder="Cor">
-                            <input type="number" id="quantidade-pedido" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Quantidade">
-                            <button class="button" style="color: black" onclick="adicionarProdutoPedido()">Adicionar</button>
+                            <input type="text" id="material-pedido" class="input-field" style="width: 50%; margin-left: 10px" placeholder="Material">
+                            <input type="text" id="cor-pedido" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Cor">
+                            <div class="container">
+                                <div class="radio-tile-group">
+                                    
+                                    <input type="number" id="quantidade-pedido" class="input-field" style="width: 30%; height: 20px;" placeholder="Quantidade">
+                                    
+                                    <div class="input-container">
+                                        <input id="Metros" type="radio" name="medida" value="Metros">
+                                        <div class="radio-tile">
+                                            <label for="Metros">Metros</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="input-container">
+                                        <input id="Unidades" type="radio" name="medida" value="Unidades">
+                                        <div class="radio-tile">
+                                            <label for="Unidades">Unidades</label>
+                                        </div>
+                                    </div>
+
+                                    <button class="button" style="color: black; width: 15%; height: 20%; margin-top: 12px; margin-left: 44px;" onclick="adicionarProdutoPedido()">Adicionar</button>
+                                </div>
+                            </div>
+                           
                             <div class="container2">    
                             </div>
-                            <!-- Tabela de rolagem -->
-                            <div class="scrollable-table">
-                                <table id="tabela-pedidos" class="styled-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Pedido</th>
-                                            <th>Fornecedor</th>
-                                            <th>Material</th>
-                                            <th>Cor</th>
-                                            <th>Quantidade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
-                                    </tbody>
-                                </table>
-                            </div>
+                            
                         </div>
                     </div>
                     <div id="painel-listagem-pedidos" class="painel-colorido" style="height: 100%; width: 79%; text-align: left">
                         <div id="container-pedidos" style="display: block;">
-                            <input type="text" id="fornecedor-listagem" class="input-field" style="width: 50%; margin-left: 10px; margin-top: 30px" placeholder="Fornecedor">
-                            <input type="number" id="pedido-listagem" class="input-field" style="width: 20%; margin-left: 10px" placeholder="Pedido">
-                            <button class="button" style="color: black" onclick="realizarPesquisa()">Pesquisar</button>
+                            <input type="number" id="pedido-listagem" class="input-field" style="width: 30%; margin-left: 10px" placeholder="Pedido">
+                            <button class="button" style="color: #5F9EA0" onclick="pesquisar()">Pesquisar</button>
+                            <button class="button" style="color: #5F9EA0" onclick="limparPesquisa()">Limpar</button>
 
                             <div class="container2">    
                             </div>
+                            <hr>
                             <!-- Tabela de rolagem -->
                             <div class="scrollable-table">
                                 <table id="tabela-listagem" class="styled-table">
@@ -121,6 +127,7 @@
                                             <th>Material</th>
                                             <th>Cor</th>
                                             <th>Quantidade</th>
+                                            <th>Unidade</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -150,8 +157,7 @@
                 </select>
                 <div id="selectedValue" style="display: none;"></div>
                 <input type="text" id="cor-modal" name="cor" class="input-field" style="width: 95%; margin-left: 10px;  height: 20px" placeholder="Cor">
-                <button class="button-modal" style="color: white" onclick="emConstrucao()">Cadastrar</button>
-                <button class="button-modal" style="color: white" onclick="emConstrucao()">Editar</button>
+                <button class="button-modal" style="color: white" onclick="salvarEdicaoEstoque()">Editar</button>
             </div>
         </div>
 
@@ -162,21 +168,19 @@
                     <div id="pedido-modal" style="text-align: left; height: 50%; width: 30%;"></div>
                     <div id="fornecedor-modal" style="text-align: left; height: 50%; width: 30%;"></div>
                 </div>
-                <div class="scrollable-table">
-                    <table id="tabela-modal-pedidos" class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>Material</th>
-                                <th>Cor</th>
-                                <th>Quantidade</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabela-modal-pedidos-body">
-                           
-                            <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
-                        </tbody>
-                    </table>
+                <div style="text-align: center;">
+                    <input type="text" id="material-modal-ped" class="input-field" style="width: 85%; margin-top: 15px" placeholder="Material">
+                    <input type="text" id="cor-modal-ped" class="input-field" style="width: 50%; height: 20px;" placeholder="Cor">
+                    <input type="number" id="quantidade-modal-ped" class="input-field" style="width: 20%;" placeholder="Quantidade">  
+                    <select name="quantidade" id="medida-modal-ped">
+                        <option value="Metros">Metros</option>
+                        <option value="Unidades">Unidades</option>
+                    </select>
+                    <div id="selectedValuePed" style="display: none;"></div>
+                    
+                    <button class="button-modal" style="color: white" onclick="salvarEdicaoListagem()">Editar</button>
                 </div>
+                
             </div>
         </div>
         

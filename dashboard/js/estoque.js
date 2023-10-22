@@ -61,12 +61,11 @@ function highlightRow(row) {
 		linhaClicada = null; // Remove o destaque se a mesma linha for clicada novamente
 	}
 
-	// Remova todos os ouvintes de eventos dos botões
-    document.getElementById('BtnEditProd').removeEventListener("click", abrirModal);
-    document.getElementById('BtnEditPed').removeEventListener("click", abrirModalPedido);
-
 	document.getElementById('BtnEditProd').addEventListener("click", function() {
 		abrirModal(linhaClicada);
+	});
+	document.getElementById('BtnEditList').addEventListener("click", function() {
+		abrirModalPedido(linhaClicada);
 	});
 	
 }
@@ -79,7 +78,7 @@ const produtosPreCadastrados = [
 ];
 
 const pedidosPreCadastrados = [
-	{ pedido: 25896321, fornecedor: "Doidão", material: "Jeans", cor: "Dourado", quantidade: 258},
+	{ pedido: 25896321, fornecedor: "Doidão", material: "Jeans", cor: "Dourado", quantidade: 258, medida: "Metros"},
 	// Adicione outros ´pedidos aqui
 ];
 
@@ -106,6 +105,7 @@ function abrirModal(row) {
     // Recupere o valor selecionado no <select> e exiba-o na <div> desejada
     var selectedValue = document.getElementById("selectedValue");
     selectedValue.textContent = medidaSelect.options[medidaSelect.selectedIndex].text;
+
 }
 
 function abrirModalPedido(row) {
@@ -115,28 +115,28 @@ function abrirModalPedido(row) {
 		<h1>  |  ${row.cells[1].textContent}</h1>
 	`;
 
-	// Preencha a tabela do modal
-    var tabelaModal = document.getElementById("tabela-modal-pedidos-body");
-    tabelaModal.innerHTML = ""; // Limpe o conteúdo anterior da tabela
+	document.getElementById("material-modal-ped").value = row.cells[2].textContent;
+    document.getElementById("cor-modal-ped").value = row.cells[3].textContent;
+    document.getElementById("quantidade-modal-ped").value = row.cells[4].textContent;
 
-    // Dados que você deseja adicionar à tabela (substitua por seus próprios dados)
-    var dados = [
-        [row.cells[2].textContent,row.cells[3].textContent, row.cells[4].textContent],
-    
-    ];
-
-    // Itere sobre os dados e crie linhas na tabela
-    dados.forEach(function (item) {
-        var row = tabelaModal.insertRow();
-        for (var i = 0; i < 3; i++) { // 3 colunas
-            var cell = row.insertCell(i);
-            cell.innerHTML = item[i];
+    // Selecionar a opção correta no <select>
+    var medidaSelect = document.getElementById("medida-modal-ped");
+    var medidaValue = row.cells[5].textContent;
+    for (var i = 0; i < medidaSelect.options.length; i++) {
+        if (medidaSelect.options[i].value === medidaValue) {
+            medidaSelect.selectedIndex = i;
+            break;
         }
-    });
+    }
 
     // Exiba o modal
     var modal = document.getElementById("myModalPed");
     modal.style.display = "block";
+
+    // Recupere o valor selecionado no <select> e exiba-o na <div> desejada
+    var selectedValue = document.getElementById("selectedValuePed");
+    selectedValue.textContent = medidaSelect.options[medidaSelect.selectedIndex].text;
+
 }
 
 // Função para fechar o modal
@@ -148,7 +148,7 @@ function fecharModal() {
 }
 
 // Evento de clique em uma linha da tabela
-var tabelaPed = document.getElementById("tabela-pedidos");
+var tabelaPed = document.getElementById("tabela-listagem");
 var linhasPed = tabelaPed.getElementsByTagName("tr");
 for (var i = 0; i < linhasPed.length; i++) {
 	linhasPed[i].addEventListener("click", function () {
@@ -186,7 +186,7 @@ function preencherTabelaProdutosPreCadastrados() {
 }
 
 function preencherTabelaPedidosPreCadastrados() {
-	const tabela = document.getElementById("tabela-pedidos");
+	const tabela = document.getElementById("tabela-listagem");
 	const tbody = tabela.querySelector("tbody");
 
 	pedidosPreCadastrados.forEach(pedido => {
@@ -198,6 +198,7 @@ function preencherTabelaPedidosPreCadastrados() {
 			<td>${pedido.material}</td>
 			<td>${pedido.cor}</td>
 			<td>${pedido.quantidade}</td>
+			<td>${pedido.medida}</td>
 		`;
 		
 		novaLinha.addEventListener("dblclick", function() {
@@ -264,9 +265,10 @@ function adicionarProdutoPedido() {
 	const material = document.getElementById("material-pedido").value;
 	const quantidade = document.getElementById("quantidade-pedido").value;
 	const cor = document.getElementById("cor-pedido").value;
+	const medida = document.querySelector('input[name="medida"]:checked').value;
 
 	// Crie uma nova linha na tabela
-	const tabela = document.getElementById("tabela-pedidos");
+	const tabela = document.getElementById("tabela-listagem");
 	const tbody = tabela.querySelector("tbody");
 	const novaLinha = document.createElement("tr");
 	novaLinha.setAttribute("onclick", "highlightRow(this)");
@@ -276,6 +278,7 @@ function adicionarProdutoPedido() {
 		<td>${material}</td>
 		<td>${cor}</td>
 		<td>${quantidade}</td>
+		<td>${medida}</td>
 	`;
 
 	novaLinha.addEventListener("dblclick", function() {
@@ -291,6 +294,10 @@ function adicionarProdutoPedido() {
 	document.getElementById("quantidade-pedido").value = "";
 	campoAleatorio.value = gerarValorAleatorio();
 	document.getElementById("cor-pedido").value = "";
+	const radios = document.querySelectorAll('input[name="medida"]');
+	radios.forEach(radio => {
+		radio.checked = false;
+	});
 
 	alert("Pedido realizado com sucesso!");
 }
@@ -310,47 +317,148 @@ closeBtn.onclick = function() {
     modal.style.display = "none";
 }
 
-function realizarPesquisa() {
-    // Obtenha os valores dos campos de entrada
-    var fornecedor = document.getElementById("fornecedor-listagem").value.toLowerCase();
-    var pedido = document.getElementById("pedido-listagem").value;
-
-    var tabelaOrigem = document.getElementById("tabela-estoque");
-    var tabelaDestino = document.getElementById("tabela-listagem");
-    var rowsOrigem = tabelaOrigem.getElementsByTagName("tr");
-    var rowsDestino = tabelaDestino.getElementsByTagName("tr");
-
-    // Limpe a tabela de destino
-    while (rowsDestino.length > 1) {
-        tabelaDestino.deleteRow(1);
-    }
-
-    // Itere pelas linhas da tabela de origem e verifique se há correspondência com a pesquisa
-    for (var i = 1; i < rowsOrigem.length; i++) {
-        var cells = rowsOrigem[i].getElementsByTagName("td");
-        var cellFornecedor = cells[0].textContent.toLowerCase();
-        var cellPedido = cells[1].textContent;
-
-        if (cellFornecedor.includes(fornecedor) && (pedido === "" || cellPedido === pedido.toString())) {
-            // Se houver correspondência, adicione a linha à tabela de destino
-            var newRow = tabelaDestino.insertRow(-1);
-            for (var j = 0; j < cells.length; j++) {
-                var newCell = newRow.insertCell(j);
-                newCell.innerHTML = cells[j].innerHTML;
-            }
-        }
-    }
-}
-
-
-
-
 // Fecha o modal se o usuário clicar fora da área do modal
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
+
+function pesquisarEstoque() {
+	var input, filter, table, tr, td, i, txtValue;
+	input = document.getElementById("item");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("tabela-estoque");
+	tr = table.getElementsByTagName("tr");
+  
+	for (i = 0; i < tr.length; i++) {
+	  td = tr[i].getElementsByTagName("td")[0];
+	  if (td) {
+		txtValue = td.textContent || td.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		  tr[i].style.display = "table-row";
+		} else {
+		  tr[i].style.display = "none";
+		}
+	  }
+	}
+  }
+  
+  // Limpar o campo de pesquisa e mostrar todos os itens
+  function limparPesquisaEstoque() {
+	document.getElementById("item").value = "";
+	var table = document.getElementById("tabela-estoque");
+	var tr = table.getElementsByTagName("tr");
+  
+	for (var i = 0; i < tr.length; i++) {
+	  tr[i].style.display = "";
+	}
+  }
+
+function pesquisar() {
+	var input, filter, table, tr, td, i, txtValue;
+	input = document.getElementById("pedido-listagem");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("tabela-listagem");
+	tr = table.getElementsByTagName("tr");
+  
+	for (i = 0; i < tr.length; i++) {
+	  td = tr[i].getElementsByTagName("td")[0];
+	  if (td) {
+		txtValue = td.textContent || td.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		  tr[i].style.display = "table-row";
+		} else {
+		  tr[i].style.display = "none";
+		}
+	  }
+	}
+  }
+  
+  // Limpar o campo de pesquisa e mostrar todos os itens
+  function limparPesquisa() {
+	document.getElementById("numero-pedido").value = "";
+	var table = document.getElementById("tabela-listagem");
+	var tr = table.getElementsByTagName("tr");
+  
+	for (var i = 0; i < tr.length; i++) {
+	  tr[i].style.display = "";
+	}
+  }
+  
+// function editarLinhaEstoque() {
+// 	if (linhaClicadaPagto) {
+		
+// 		const cells = linhaClicadaPagto.getElementsByTagName('td');
+// 		document.getElementById("item").value = cells[0].textContent;			
+// 		document.getElementById("cor").value = cells[1].textContent;
+// 		document.getElementById("quant").value = cells[2].textContent;
+// 		document.querySelectorAll('input[name="radio"]') = cells[3].textContent;
+		
+// 		abrirModal();
+// 	} else {
+// 		alert('Nenhuma linha selecionada. Selecione uma linha para editar. ESSA');
+// 	}
+// }
+
+function salvarEdicaoEstoque() {
+
+		// Captura os valores dos campos de edição
+		var itemMod = document.getElementById("item-modal").value;
+		var quantMod = document.getElementById("quant-modal").value;
+		var medidaMod = document.getElementById("medida-modal").value;
+		var corMod = document.getElementById("cor-modal").value;
+
+		// Verifica se algum dos campos de edição está vazio
+		if (
+			itemMod === "" ||
+			quantMod === "" ||
+			medidaMod === "" ||
+			corMod === ""
+		) {
+			alert("Preencha todos os campos de edição antes de salvar.");
+		} else {
+			// Atualiza os valores da linha clicada com os valores dos campos de edição
+			const cells = linhaClicada.getElementsByTagName('td');
+			cells[0].textContent = itemMod;
+			cells[1].textContent = corMod;
+			cells[2].textContent = quantMod;
+			cells[3].textContent = medidaMod;
+
+			// Fecha o modal de edição
+			fecharModal();
+		}
+	}
+
+function salvarEdicaoListagem() {
+
+	// Captura os valores dos campos de edição
+	var material = document.getElementById("material-modal-ped").value;
+	var cor = document.getElementById("cor-modal-ped").value;
+	var quantidade = document.getElementById("quantidade-modal-ped").value;
+	var medida = document.getElementById("medida-modal-ped").value;
+
+	// Verifica se algum dos campos de edição está vazio
+	if (
+		material === "" ||
+		cor === "" ||
+		quantidade === "" ||
+		medida === ""
+	) {
+		alert("Preencha todos os campos de edição antes de salvar.");
+	} else {
+		// Atualiza os valores da linha clicada com os valores dos campos de edição
+		const cells = linhaClicada.getElementsByTagName('td');
+		cells[2].textContent = material;
+		cells[3].textContent = cor;
+		cells[4].textContent = quantidade;
+		cells[5].textContent = medida;
+
+		// Fecha o modal de edição
+		fecharModal();
+	}
+}
+
 
 
 function emConstrucao(){
