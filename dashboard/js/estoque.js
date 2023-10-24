@@ -390,21 +390,6 @@ function pesquisar() {
 	  tr[i].style.display = "";
 	}
   }
-  
-// function editarLinhaEstoque() {
-// 	if (linhaClicadaPagto) {
-		
-// 		const cells = linhaClicadaPagto.getElementsByTagName('td');
-// 		document.getElementById("item").value = cells[0].textContent;			
-// 		document.getElementById("cor").value = cells[1].textContent;
-// 		document.getElementById("quant").value = cells[2].textContent;
-// 		document.querySelectorAll('input[name="radio"]') = cells[3].textContent;
-		
-// 		abrirModal();
-// 	} else {
-// 		alert('Nenhuma linha selecionada. Selecione uma linha para editar. ESSA');
-// 	}
-// }
 
 function salvarEdicaoEstoque() {
 		console.log(linhaClicada);

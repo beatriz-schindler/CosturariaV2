@@ -25,18 +25,36 @@ document.querySelector(".button-pedidos").addEventListener("click", mostrarPaine
 // Exibir o painel de Cadastros ao carregar a página
 window.addEventListener("load", mostrarPainelCadastros);
 
-function Checkfiles(){
-    var fup = document.getElementById('filename');
-    var fileName = fup.value;
-    var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-
-    if(ext =="jpeg" || ext=="png"){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
+function pesquisar() {
+	var input, filter, table, tr, td, i, txtValue;
+	input = document.getElementById("pedido-listagem");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("tabela-listagem");
+	tr = table.getElementsByTagName("tr");
+  
+	for (i = 0; i < tr.length; i++) {
+	  td = tr[i].getElementsByTagName("td")[0];
+	  if (td) {
+		txtValue = td.textContent || td.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		  tr[i].style.display = "table-row";
+		} else {
+		  tr[i].style.display = "none";
+		}
+	  }
+	}
+  }
+  
+  // Limpar o campo de pesquisa e mostrar todos os itens
+  function limparPesquisa() {
+	document.getElementById("pedido-listagem").value = "";
+	var table = document.getElementById("tabela-listagem");
+	var tr = table.getElementsByTagName("tr");
+  
+	for (var i = 0; i < tr.length; i++) {
+	  tr[i].style.display = "";
+	}
+  }
 
 function emConstrucao(){
 	window.alert("Função em Construção! - Volte mais tarde")

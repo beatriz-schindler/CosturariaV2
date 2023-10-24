@@ -36,58 +36,41 @@
                             <input type="text" id="input-cadastro" class="input-field" style=" height: 20px; width: 44%;" placeholder="Usuário">
                             <input type="text" id="input-cadastro" class="input-field" style=" height: 20px; width: 45%;" placeholder="Senha">
                             <input type="text" id="input-cadastro" class="input-field" style=" height: 20px; width: 94%;" placeholder="Cargo">
-                            <input type="file" id="filename" name="arquivos" class="btn btn-success"  accept="image/png, image/jpeg" style="margin-top: 20px; margin-left: 12px;" multiple /> 
+                            <form method="POST" enctype="multipart/form-data"> 
+                                <input type="file" id="filename" name="arquivos" class="btn btn-success"  accept="image/png, image/jpeg" style="margin-top: 20px; margin-left: 12px;" multiple />  
+                            </form>
                         </div>
+                        
                     </div>
                     <div id="button" style="width: 100%; text-align: right; margin-top: 80px">
-                        <button class="button" style="color: #5F9EA0; margin-right: 130px;" onclick="emConstrucao()">Salvar</button>
+                        <button class="button" style="color: #5F9EA0; margin-right: 130px;" type="submit" onclick="emConstrucao()">Salvar</button>  
                     </div>
                    
 				</div>
-				<div id="painel-pedidos-adm" class="painel-colorido" style="display: none;" style="height: 100%; width: 79%; text-align: center">
-					<div class="scrollable-table" style="width: 100%; height: 360px;">
-                        <table id="tabela-pedidos" class="styled-table" style="width: 98%;">
+				<div id="painel-pedidos-adm" class="painel-colorido" style="display: none;" style="height: 100%; width: 100%; text-align: center">
+                    <input type="number" id="pedido-listagem" class="input-field" style="width: 30%; margin-left: 10px" placeholder="Pedido">
+                    <button class="button" style="color: #5F9EA0" onclick="pesquisar()">Pesquisar</button>
+                    <button class="button" style="color: #5F9EA0" onclick="limparPesquisa()">Limpar</button>
+                    <hr>
+					<div class="scrollable-table">
+                        <table id="tabela-listagem" class="styled-table">
                             <thead>
                                 <tr>
                                     <th>Pedido</th>
                                     <th>Cliente</th>
                                     <th>Status</th>
-                                    <th>Ações</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                  <th scope="row">123</th>
-                                  <td>Doidão</td>
-                                  <td>Em Andamento</td>
-                                  <td>
-                                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="" style="height: 15px; width: 15px;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
-                                </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">456</th>
-                                  <td>Blumenau</td>
-                                  <td>Cancelado</td>
-                                  <td>
-                                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="" style="height: 15px; width: 15px;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
-                                </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">789</th>
-                                    <td>Nike</td>
-                                    <td>Concluído</td>
-                                    <td>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="" style="height: 15px; width: 15px;">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="" style="height: 15px; width: 15px; margin-left: 5px;">
-                                    </td>
-                                </tr>
-                              </tbody>
+                                <!-- As linhas da tabela serão preenchidas com dados do JavaScript -->
+                            </tbody>
                         </table>
-                        <div id="button" style="width: 100%; height: 40%; text-align: right; margin-top: 80px;">
-                            <button class="button" style="color: #5F9EA0; margin-right: 20px;" onclick="emConstrucao()">Atualizar</button>
-                        </div>
+                    </div>
+
+                    <div id="button" style="width: 100%; height: 40%; text-align: center; margin-top: 80px;">
+                        <button class="button" style="color: #5F9EA0" onclick="emConstrucao()">Excluir</button>
+                        <button class="button" style="color: #5F9EA0; margin-left: 10px;" onclick="emConstrucao()">Editar</button>
                     </div>
 				</div>
 
